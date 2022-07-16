@@ -15,7 +15,9 @@ t_num	*ft_lstlast(t_num *lst);
 int		ft_lstsize(t_num *lst);
 t_num	*ft_lstadd_back(t_num **lst, t_num *new);
 t_num	*ft_lstnew(int content);
-
-
+void	ft_lst_free(t_num *lst);
+void	ft_print_lst(t_num *lst);
+char	**ft_split(char const *s, char c, int *counter);
+void	input_check(char *s, t_num *head_p);
 
 #endif
