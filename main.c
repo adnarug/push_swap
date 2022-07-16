@@ -6,57 +6,48 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/13 17:40:23 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/16 13:04:03 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*
-1. Check argc
-2. Go through the arguments and check if:
-	- less then 2
-	- there is 0
-	- there is a duplicate
-3. If it is in brackets transorm into a normal input
-4. Code the instructions
-5. Decide on the algorithm
-6. Test test test 
-*/
+#include <stdlib.h>
+
+
 int main(int argc, char **argv)
 {
-	t_num *a;
-	int c = argc;
-	void	*head_p;
-
-	a = malloc(sizeof(t_num));
+	t_num	*head_p;
+	t_num	*check;
+	
 	if (argc < 2)
 		return (0);
-	head_p = ft_argv2list(argv, c, a);
-	a = head_p;
-	while (a != NULL)
-	{
-		printf ("%d", (int)a->content);
-		a = a->next;
-	}
+	head_p = ft_lstnew(atoi(argv[1]));
+	ft_argv2list(argv, argc, head_p);
+	check = ft_lstlast(head_p);
+	printf("the first element is: %d \n", head_p->content);
+	printf("the last element is: %d", check->content);
+	//printf ("Checking: %d", check->content);
+	// a = head_p;
+	// while (a != NULL)
+	// {
+	// 	printf ("%d", a->content);
+	// 	a = a->next;
+	// }
 	return (0);
 }
 
-void *ft_argv2list(char **argv, int c, t_num *a)
+void *ft_argv2list(char **nums, int count, t_num *head_p)
 {
 	int		i;
-	void	*head_p;
+	t_num	*first;
 	
-	i = 1;
-	head_p = &(a->content);
-	while ((c - 1) > i)
+	i = 2;
+	// first = malloc(sizeof(t_num));
+	first = head_p;
+	while (count > i)
 	{
-		a->content = *argv[i];
-		if (*argv[i + 1] != '\0')
-			a->next = (void*)argv[i + 1];
-		else
-			a->next = NULL;
-		a = a->next;
+		first = ft_lstadd_back(&first, ft_lstnew(atoi(nums[i])));
 		i++;
 	}
-	return (head_p);
+	return (first);
 }
