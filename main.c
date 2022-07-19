@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/18 18:19:08 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/19 10:09:05 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int main(int argc, char **argv)
 		return (0);
 	input_check(argv[1]);
 	head_p = ft_lstnew(atoi(argv[1]));//argv[1] can be in quotation marks
-	argv += 2;
 	ft_argv2list(argv, argc, head_p);
 	ft_print_lst(head_p);
 	ft_lst_free(head_p);
@@ -40,17 +39,26 @@ void ft_argv2list(char **nums, int count, t_num *head_p)
 	int 	counter;
 	t_num	*first;
 	int		number;
+	char	**new_nums;
 	
-	i = 0;
+	i = 2;
 	number = 0;
 	counter = 0;
 	first = head_p;
+	new_nums = NULL;
 	while(i < count)
 	{
-		parsing_input(nums[i], &count, first);
-		input_check(nums[i]);
-		number = atoi(nums[i]);
-		first = ft_lstadd_back(&first, ft_lstnew(number));
+		if(strchr(nums[i], ' ') != NULL)
+		{
+			new_nums = ft_split(nums[i], ' ', &counter);
+			ft_news_nums2list(new_nums, counter, head_p);
+		}
+		else
+		{
+			input_check(nums[i]);
+			number = atoi(nums[i]);
+			first = ft_lstadd_back(&first, ft_lstnew(number));
+		}
 		i++;
 	}
 }
@@ -91,23 +99,6 @@ void clean_nums(char **nums, int length)
 	nums = NULL;
 }
 
-void parsing_input(char *nums, int *count, t_num *latest_element)
-{
-	int	i;
-	int counter;
-	char **new_nums;
-
-	i = 0;
-	counter = 0;
-	if(strchr(nums, ' ') != NULL)
-	{
-		//clean_nums(nums, count);
-		new_nums = ft_split(nums, ' ', &counter);
-		//ft_argv2list(new_nums, counter, latest_element);
-		ft_news_nums2list(new_nums, counter, latest_element);
-	}
-}
-
 void ft_news_nums2list(char **nums, int count, t_num *head_p)
 {
 	int		i;
@@ -117,7 +108,7 @@ void ft_news_nums2list(char **nums, int count, t_num *head_p)
 	i = 0;
 	number = 0;
 	first = head_p;
-	while(i < count - 1)
+	while(i < count)
 	{
 		number = atoi(nums[i]);
 		first = ft_lstadd_back(&first, ft_lstnew(number));
