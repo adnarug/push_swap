@@ -27,5 +27,10 @@ int		ft_isdigit(int c);
 //void	check_dupes(char *s, int argc);
 void	check_repeats(int *new_nums, int number, int count);
 void	check_dupes(t_num *list, t_num *head_p);
-
+//Instructions
+void sa(t_num *a);
+void pa(t_num *a, t_num *b);
+void sb(t_num *b);
+void ss(t_num *a, t_num *b);
+void del_node(t_num *b);
 #endif

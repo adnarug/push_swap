@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/19 15:43:40 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:23:50 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,20 @@
 #include <stdlib.h>
 #include <string.h>
 
-
+//TODO: space in the end
 int main(int argc, char **argv)
 {
 	t_num	*head_p;
-	int		start;
-	int		counter;
 	int		i;
 
-	start = 0;
-	counter = 0;
 	i = 1;
 	if (argc < 2)
 		return (0);
 	argv = typeof_input(argv, &argc, &i);
-	head_p = ft_lstnew(atoi(argv[i]));//argv[1] can be in quotation marks
+	head_p = ft_lstnew(atoi(argv[i]));
 	i += 1;
 	ft_argv2list(argv, argc, head_p, i);
+	sa(head_p);
 	ft_print_lst(head_p);
 	ft_lst_free(head_p);
 	head_p = NULL;
@@ -84,7 +81,7 @@ void	check_isdigit(char *s)
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (ft_isdigit(s[i]) == 0 && s[i] != '+' && s[i] != '-')// Check if there is a non-digit
+		if (ft_isdigit(s[i]) == 0 && s[i] != '+' && s[i] != '-' && s[i] != 0)// Check if there is a non-digit
 		{
 			write (2, "Error", 6);
 			exit(1);
