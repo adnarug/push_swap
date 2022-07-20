@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/19 16:23:50 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:24:55 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,32 @@
 //TODO: space in the end
 int main(int argc, char **argv)
 {
-	t_num	*head_p;
+	t_num	*a;
+	t_num	*b;
 	int		i;
 
+	b = NULL;
 	i = 1;
 	if (argc < 2)
 		return (0);
 	argv = typeof_input(argv, &argc, &i);
-	head_p = ft_lstnew(atoi(argv[i]));
+	a = ft_lstnew(atoi(argv[i]));
 	i += 1;
-	ft_argv2list(argv, argc, head_p, i);
-	sa(head_p);
-	ft_print_lst(head_p);
-	ft_lst_free(head_p);
-	head_p = NULL;
-	//system("leaks a.out");
+	ft_argv2list(argv, argc, a, i);
+	//sa(a);
+	//reassign_node(&a);
+	rra(&a);
+	ft_print_lst_a(a);
+	ft_print_lst_b(b);
+	ft_lst_free(a);
+	a = NULL;
+	ft_lst_free(b);
+	b = NULL;
+	system("leaks a.out");
 	return (0);
 }
 
-void ft_argv2list(char **nums, int count, t_num *head_p, int start)
+void ft_argv2list(char **nums, int count, t_num *a, int start)
 {
 	int 	counter;
 	t_num	*first;
@@ -44,7 +51,7 @@ void ft_argv2list(char **nums, int count, t_num *head_p, int start)
 	
 	number = 0;
 	counter = 1;
-	first = head_p;
+	first = a;
 	new_nums[0] = first->content;
 	while(start < count)
 	{
@@ -119,7 +126,7 @@ char **typeof_input(char **nums, int *argc, int *start)
 // 	nums = NULL;
 // }
 
-// void ft_news_nums2list(char **nums, int count, t_num *head_p)
+// void ft_news_nums2list(char **nums, int count, t_num *a)
 // {
 // 	int		i;
 // 	t_num	*first;
@@ -127,7 +134,7 @@ char **typeof_input(char **nums, int *argc, int *start)
 	
 // 	i = 0;
 // 	number = 0;
-// 	first = head_p;
+// 	first = a;
 // 	while(i < count)
 // 	{
 // 		number = atoi(nums[i]);

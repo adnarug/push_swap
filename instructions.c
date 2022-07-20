@@ -6,15 +6,15 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:50:34 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/19 17:59:15 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:26:13 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "Libft/libft.h"
+// #include "Libft/libft.h"
 
 /*Swap the first 2 elements on the top of stack a*/
-void sa(t_num *a)
+void	sa(t_num *a)
 {
 	if (a->next == NULL || a == NULL)
 		return;
@@ -32,7 +32,7 @@ void sa(t_num *a)
 }
 
 /*Swap the first 2 elements on the top of stack b*/
-void sb(t_num *b)
+void	sb(t_num *b)
 {
 	if (b->next == NULL || b == NULL)
 		return;
@@ -50,60 +50,93 @@ void sb(t_num *b)
 }
 
 /* sa and sb */
-void ss(t_num *a, t_num *b)
+void	ss(t_num *a, t_num *b)
 {
 	sa(a);
 	sb(b);
+	write (1, "ss\n", 3);
 }
 
-/* Push a - take the first element on the top of stack b and put it on top a*/
-void pa(t_num *a, t_num *b)
+//Push a - take the first element on the top of stack b and put it on top a*/
+void	pa(t_num **a, t_num **b)
 {
-	if (b == NULL)
+	if(b == NULL)
 		return ;
-	ft_lstadd_front(&a, b);
-	ft_lstdelone(b, del_node(b));
+	ft_lstadd_front(a, reassign_front_node(b));
+	write (1, "pa\n", 3);
 }
 
-void del_node(t_num *b)
+t_num	*reassign_front_node(t_num **list)
 {
-	t_num *temp;
+	t_num *head;
 	
-	temp = malloc(sizeof(t_num));
-	temp = b->next;
-	free (b);
-	b = NULL;
-	b = temp;
-	free(temp);
-	temp = NULL;
+	head = *list;
+	*list = head->next;
+	return (head);
 }
 
-// /*Push b - take the first element on the top of stack a and put it on top b*/
-// void pa(t_num *list)
-// {
+t_num	*reassign_back_node(t_num **list)
+{
+	t_num	*last;
+	t_num	*head;
 	
-// }
+	head = *list;
+	last = ft_lstlast(*list);
+	last->next = head;
+	while ((*list)->next != last)
+		*list = (*list)->next;
+	(*list)->next = NULL;
+	head = last;
+	return (head);
+}
 
-// /*Rotate a - shift up all elements in a by one*/
-// void ra(t_num *list)
-// {
-	
-// }
+/*Push b - take the first element on the top of stack a and put it on top b*/
+void	pb(t_num **a, t_num **b)
+{
+	if (a == NULL)
+		return ;
+	ft_lstadd_front(b, reassign_front_node(a));
+	write (1, "pb\n", 3);
+}
 
-// /*Rotate b - Shift up all elements in b by one*/
-// void rb(t_num *list)
-// {
-	
-// }
+/*Rotate a - shift up all elements in a by one*/
+void	ra(t_num **a)
+{
+	t_num	*tmp;
 
-// /*Reverse rotate a - Shift down all elements in a by one*/
-// void rra(t_num *list)
-// {
-	
-// }
+	tmp = reassign_front_node(a);
+	tmp->next = NULL;
+	ft_lstadd_back(a, tmp);
+	write(1, "ra\n", 3);
+}
 
-// /*Reverse rotate b - Shift down all elements in b by one*/
-// void rrb(t_num *list)
-// {
-	
-// }
+/*Rotate b - Shift up all elements in b by one*/
+void	rb(t_num **b)
+{
+	t_num	*tmp;
+
+	tmp = reassign_front_node(b);
+	tmp->next = NULL;
+	ft_lstadd_back(b, tmp);
+	write(1, "rb\n", 3);
+}
+
+/*Reverse rotate a - Shift down all elements in a by one*/
+void	rra(t_num **a)
+{
+	*a = reassign_back_node(a);
+	write(1,"rra\n", 4);
+}
+
+/*Reverse rotate b - Shift down all elements in b by one*/
+void rrb(t_num **b)
+{
+	*b = reassign_back_node(b);
+	write(1, "rrb\n", 4);
+}
+
+void	rrr(t_num **a, t_num **b)
+{
+	rra(a);
+	rrb(b);
+}

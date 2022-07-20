@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/19 14:05:51 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:33:14 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,23 @@ void   ft_lst_free(t_num *lst)
 	pointer = NULL;
 }
 
-void ft_print_lst(t_num *lst)
+void ft_print_lst_a(t_num *a)
 {
-	while (lst != NULL)
+	printf("A: \n");
+	while (a != NULL)
 	{
-		printf("%d ", lst->content);
-		lst = lst->next;
+		printf(" %d \n", a->content);
+		a = a->next;
+	}
+}
+
+void ft_print_lst_b(t_num *b)
+{
+	printf("B: \n");
+	while (b != NULL)
+	{
+		printf(" %d \n", b->content);
+		b = b->next;
 	}
 }
 
@@ -96,4 +107,13 @@ int	ft_isdigit(int c)
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
+}
+
+
+void	ft_lstadd_front(t_num **lst, t_num	*new)
+{
+	if (lst == NULL || new == NULL)
+		return ;
+	new -> next = *lst;
+	*lst = new;
 }
