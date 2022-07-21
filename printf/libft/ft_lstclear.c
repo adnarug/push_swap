@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pguranda <pguranda@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 16:38:00 by pguranda          #+#    #+#             */
-/*   Updated: 2022/04/21 16:34:49 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/21 08:22:59 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstclear(t_list **lst, void (del)(int))
 {
 	t_list				*curr;
 	t_list				*temp;

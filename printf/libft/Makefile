@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pguranda <pguranda@student.42.fr>          +#+  +:+       +#+         #
+#    By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/30 15:24:44 by pguranda          #+#    #+#              #
-#    Updated: 2022/05/27 13:40:06 by pguranda         ###   ########.fr        #
+#    Updated: 2022/07/21 08:56:16 by pguranda         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,9 @@ SRCS	=	ft_atoi.c 		ft_bzero.c 		ft_calloc.c\
 			ft_strjoin.c	ft_strtrim.c	ft_split.c\
 			ft_itoa.c		ft_strmapi.c	ft_striteri.c\
 			ft_putchar_fd.c	ft_putstr_fd.c	ft_putendl_fd.c\
-			ft_putnbr_fd.c	ft_lstnew.c		ft_lstadd_front.c\
-			ft_lstsize.c	ft_lstlast.c	ft_lstadd_back.c\
-			ft_lstdelone.c	ft_lstclear.c	ft_lstiter.c\
-			ft_lstmap.c
+			ft_putnbr_fd.c	ft_lstadd_front.c	ft_lstadd_back.c\
+			ft_lstsize.c	ft_lstlast.c	ft_lstnew.c\
+			ft_lstdelone.c	ft_lstclear.c	ft_lstiter.c
 			
 OBJ		=	$(SRCS:%.c=%.o)
 
@@ -43,13 +42,13 @@ CFLAGS	=	-Wall -Wextra -Werror
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJ) $(HEADER)
-	ar rcs $(NAME) $(OBJ) 
+	@ar rcs $(NAME) $(OBJ) 
 
 bonus : $(BONUS_OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $(BONUS_OBJS)
+	@$(AR) $(ARFLAGS) $(NAME) $(BONUS_OBJS)
 
 %.o		:	%.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean	:
 	@rm -f $(OBJ)

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pguranda <pguranda@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:10:00 by pguranda          #+#    #+#             */
-/*   Updated: 2022/04/14 11:53:02 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/21 08:34:32 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, int (f)(int), int (*del)(int))
 {
 	t_list				*new_lst;
 	t_list				*new_node;

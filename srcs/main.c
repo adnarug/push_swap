@@ -6,19 +6,17 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/20 15:24:55 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:38:57 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <stdlib.h>
-#include <string.h>
+#include "../include/push_swap.h"
 
 //TODO: space in the end
 int main(int argc, char **argv)
 {
-	t_num	*a;
-	t_num	*b;
+	t_list	*a;
+	t_list	*b;
 	int		i;
 
 	b = NULL;
@@ -29,8 +27,7 @@ int main(int argc, char **argv)
 	a = ft_lstnew(atoi(argv[i]));
 	i += 1;
 	ft_argv2list(argv, argc, a, i);
-	//sa(a);
-	//reassign_node(&a);
+
 	rra(&a);
 	ft_print_lst_a(a);
 	ft_print_lst_b(b);
@@ -42,10 +39,10 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-void ft_argv2list(char **nums, int count, t_num *a, int start)
+void ft_argv2list(char **nums, int count, t_list *a, int start)
 {
 	int 	counter;
-	t_num	*first;
+	t_list	*first;
 	int		number;
 	int		new_nums[count];
 	
@@ -110,36 +107,3 @@ char **typeof_input(char **nums, int *argc, int *start)
 	}
 	return (nums);
 }
-
-// void clean_nums(char **nums, int length)
-// {
-// 	int	i;
-	
-// 	i = 1;
-// 	while(i < length)
-// 	{
-// 		free(nums[i]);
-// 		nums[i] = NULL;
-// 		i++;
-// 	}	
-// 	free(nums);
-// 	nums = NULL;
-// }
-
-// void ft_news_nums2list(char **nums, int count, t_num *a)
-// {
-// 	int		i;
-// 	t_num	*first;
-// 	int		number;
-	
-// 	i = 0;
-// 	number = 0;
-// 	first = a;
-// 	while(i < count)
-// 	{
-// 		number = atoi(nums[i]);
-// 		first = ft_lstadd_back(&first, ft_lstnew(number));
-// 		i++;
-// 	}
-// 	return ;
-// }

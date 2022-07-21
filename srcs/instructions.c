@@ -6,15 +6,14 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:50:34 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/20 15:26:13 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:38:44 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-// #include "Libft/libft.h"
+#include "../include/push_swap.h"
 
 /*Swap the first 2 elements on the top of stack a*/
-void	sa(t_num *a)
+void	sa(t_list *a)
 {
 	if (a->next == NULL || a == NULL)
 		return;
@@ -32,7 +31,7 @@ void	sa(t_num *a)
 }
 
 /*Swap the first 2 elements on the top of stack b*/
-void	sb(t_num *b)
+void	sb(t_list *b)
 {
 	if (b->next == NULL || b == NULL)
 		return;
@@ -50,7 +49,7 @@ void	sb(t_num *b)
 }
 
 /* sa and sb */
-void	ss(t_num *a, t_num *b)
+void	ss(t_list *a, t_list *b)
 {
 	sa(a);
 	sb(b);
@@ -58,7 +57,7 @@ void	ss(t_num *a, t_num *b)
 }
 
 //Push a - take the first element on the top of stack b and put it on top a*/
-void	pa(t_num **a, t_num **b)
+void	pa(t_list **a, t_list **b)
 {
 	if(b == NULL)
 		return ;
@@ -66,19 +65,19 @@ void	pa(t_num **a, t_num **b)
 	write (1, "pa\n", 3);
 }
 
-t_num	*reassign_front_node(t_num **list)
+t_list	*reassign_front_node(t_list **list)
 {
-	t_num *head;
+	t_list *head;
 	
 	head = *list;
 	*list = head->next;
 	return (head);
 }
 
-t_num	*reassign_back_node(t_num **list)
+t_list	*reassign_back_node(t_list **list)
 {
-	t_num	*last;
-	t_num	*head;
+	t_list	*last;
+	t_list	*head;
 	
 	head = *list;
 	last = ft_lstlast(*list);
@@ -91,7 +90,7 @@ t_num	*reassign_back_node(t_num **list)
 }
 
 /*Push b - take the first element on the top of stack a and put it on top b*/
-void	pb(t_num **a, t_num **b)
+void	pb(t_list **a, t_list **b)
 {
 	if (a == NULL)
 		return ;
@@ -100,9 +99,9 @@ void	pb(t_num **a, t_num **b)
 }
 
 /*Rotate a - shift up all elements in a by one*/
-void	ra(t_num **a)
+void	ra(t_list **a)
 {
-	t_num	*tmp;
+	t_list	*tmp;
 
 	tmp = reassign_front_node(a);
 	tmp->next = NULL;
@@ -111,9 +110,9 @@ void	ra(t_num **a)
 }
 
 /*Rotate b - Shift up all elements in b by one*/
-void	rb(t_num **b)
+void	rb(t_list **b)
 {
-	t_num	*tmp;
+	t_list	*tmp;
 
 	tmp = reassign_front_node(b);
 	tmp->next = NULL;
@@ -122,20 +121,20 @@ void	rb(t_num **b)
 }
 
 /*Reverse rotate a - Shift down all elements in a by one*/
-void	rra(t_num **a)
+void	rra(t_list **a)
 {
 	*a = reassign_back_node(a);
 	write(1,"rra\n", 4);
 }
 
 /*Reverse rotate b - Shift down all elements in b by one*/
-void rrb(t_num **b)
+void rrb(t_list **b)
 {
 	*b = reassign_back_node(b);
 	write(1, "rrb\n", 4);
 }
 
-void	rrr(t_num **a, t_num **b)
+void	rrr(t_list **a, t_list **b)
 {
 	rra(a);
 	rrb(b);

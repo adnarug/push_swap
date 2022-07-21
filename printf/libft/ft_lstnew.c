@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pguranda <pguranda@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:25:16 by pguranda          #+#    #+#             */
-/*   Updated: 2022/05/27 11:38:08 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/21 08:40:30 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew(int content)
 {
 	t_list	*lst;
 
