@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/21 08:30:59 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/22 16:59:47 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void ft_print_lst_a(t_list *a)
 	printf("A: \n");
 	while (a != NULL)
 	{
-		printf(" %d \n", a->content);
+		printf(" %d   [%d]\n", a->content, a->init_index);
 		a = a->next;
 	}
 }
@@ -43,7 +43,7 @@ void ft_print_lst_b(t_list *b)
 	printf("B: \n");
 	while (b != NULL)
 	{
-		printf(" %d \n", (int)b->content);
+		printf(" %d   [%d] \n", b->content, b->init_index);
 		b = b->next;
 	}
 }

@@ -6,14 +6,14 @@
 #    By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 15:33:32 by pguranda          #+#    #+#              #
-#    Updated: 2022/07/21 12:54:22 by pguranda         ###   ########.fr        #
+#    Updated: 2022/07/22 13:38:15 by pguranda         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	push_swap.a
 INCLUDE	=	include/push_swap.h
 CC		=	cc
-CFLAGS	=	-Werror -Wextra -Wall -I
+CFLAGS	=	-Werror -Wextra -Wall -g -I 
 AR		=	ar rcs
 PRINTF	=	printf/
 OBJ_DIR	=	objs/
@@ -31,7 +31,7 @@ SRC		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ		=	$(addprefix	$(OBJ_DIR), $(addsuffix .o, $(SRC_FILES))) 
 			
 all		:	$(NAME)
-1	1
+
 OBJF	=	.cache_exists
 
 $(NAME)	:	$(OBJ)
@@ -39,6 +39,7 @@ $(NAME)	:	$(OBJ)
 		@cp printf/libftprintf.a .
 		@mv libftprintf.a $(NAME)
 		@$(AR) $(NAME) $(OBJ)
+		@ $(CC) -g push_swap.a -o push_swap
 		@echo "$(GREEN)push_swap compiled!$(DEF_COLOR)"
 
 $(OBJF):
