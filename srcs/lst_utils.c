@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/22 16:59:47 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/23 14:17:26 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void ft_print_lst_a(t_list *a)
 	printf("A: \n");
 	while (a != NULL)
 	{
-		printf(" %d   [%d]\n", a->content, a->init_index);
+		printf(" %-5d   [in_i: %d, i: %d, ttl: %d]\n", a->content, a->init_index, a->index, a->total_count);
 		a = a->next;
 	}
 }
@@ -43,7 +43,33 @@ void ft_print_lst_b(t_list *b)
 	printf("B: \n");
 	while (b != NULL)
 	{
-		printf(" %d   [%d] \n", b->content, b->init_index);
+		printf(" %-5d   [in_i: %d, i: %d, ttl: %d]\n", b->content, b->init_index, b->index, b->total_count);
 		b = b->next;
 	}
+}
+
+void ft_default_struct(t_list **b, int total_count)
+{
+
+	(*b)->content = 0;
+	(*b)->init_index = 0;
+	(*b)->index = 0;
+	(*b)->total_count = total_count;
+}
+
+void    decrease_index(t_list **a)
+{
+	t_list	*head;
+
+	head = *a;
+	while (*a != NULL)
+	{
+		(*a)->init_index -= 1;
+		if((*a)->init_index < 0)
+			(*a)->init_index = (*a)->total_count - 1;
+		if ((*a)->init_index >= (*a)->total_count)
+			(*a)->init_index = 0;
+		*a = (*a)->next;
+	}
+	*a = head;
 }
