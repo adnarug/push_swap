@@ -20,7 +20,8 @@ void	check_repeats(int *new_nums, int number, int count);
 void	check_dupes(t_list *list, t_list *a);
 void    sorting(t_list **a, t_list **b);
 void    ft_default_struct(t_list **b, int total_count);
-void    decrease_index(t_list **a);
+void    decrease_index(t_list **lst);
+void    increase_index(t_list **lst);
 
 //Instructions
 void	sa(t_list *a);
@@ -32,6 +33,7 @@ t_list	*reassign_back_node(t_list **list);
 void	pb(t_list **a, t_list **b);
 void	ra(t_list **a);
 void	rb(t_list **b);
+void    rr(t_list **a, t_list **b);
 void	rra(t_list **a);
 void	rrb(t_list **b);
 void	rrr(t_list **a, t_list **b);

@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:50:34 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/23 14:13:02 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/23 14:25:07 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,13 +122,22 @@ void	rb(t_list **b)
 	tmp = reassign_front_node(b);
 	tmp->next = NULL;
 	ft_lstadd_back(b, tmp, 0);
+	decrease_index(b);
 	write(1, "rb\n", 3);
+}
+
+// ra and rb together
+void rr(t_list **a, t_list **b)
+{
+	ra(a);
+	rb(b);
 }
 
 /*Reverse rotate a - Shift down all elements in a by one*/
 void	rra(t_list **a)
 {
 	*a = reassign_back_node(a);
+	increase_index(a);
 	write(1,"rra\n", 4);
 }
 
@@ -136,6 +145,7 @@ void	rra(t_list **a)
 void rrb(t_list **b)
 {
 	*b = reassign_back_node(b);
+	increase_index(b);
 	write(1, "rrb\n", 4);
 }
 

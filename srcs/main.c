@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/23 14:17:58 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/23 14:25:38 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ int main(int argc, char **argv)
 	ft_default_struct(&b, a->total_count);
 	ft_argv2list(argv, argc, a, i);
 	//sorting(&a ,&b);
-	ra(&a);
+	rb(&a);
 	ft_print_lst_a(a);
 	ft_print_lst_b(b);
 	ft_lst_free(a);
 	a = NULL;
 	ft_lst_free(b);
 	b = NULL;
-	system("leaks push_swap");
+	// system("leaks push_swap");
 	return (0);
 }
 
