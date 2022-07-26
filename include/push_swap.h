@@ -20,8 +20,9 @@ void	check_repeats(int *new_nums, int number, int count);
 void	check_dupes(t_list *list, t_list *a);
 void    sorting(t_list **a, t_list **b);
 void    ft_default_struct(t_list **b, int total_count);
-void    decrease_index(t_list **lst);
-void    increase_index(t_list **lst);
+void    decrease_index(t_list **lst, int flag_for_ttl);
+void    increase_index(t_list **lst, int flag_for_ttl);
+void    search_min(t_list **a, t_list   **b);
 
 //Instructions
 void	sa(t_list *a);

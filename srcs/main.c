@@ -6,13 +6,13 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/23 14:25:38 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/26 15:27:55 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-//TODO: 1. space in the end 2. lst_add back conflict 3. Indexes (init and actual) to decide the min moves to get to instructions
+//TODO: 1. finding min, but need to reset the header
 int main(int argc, char **argv)
 {
 	t_list	*a;
@@ -33,9 +33,14 @@ int main(int argc, char **argv)
 	ft_default_struct(&b, a->total_count);
 	ft_argv2list(argv, argc, a, i);
 	//sorting(&a ,&b);
-	rb(&a);
-	ft_print_lst_a(a);
-	ft_print_lst_b(b);
+	while (a != NULL)
+		search_min(&a, &b);
+	while (b->content != 0)
+		pa(&a, &b);
+	// ft_print_lst_a(a);
+	// ft_print_lst_b(b);
+	// 	printf ("\nEnd of iteration \n ");
+	// }
 	ft_lst_free(a);
 	a = NULL;
 	ft_lst_free(b);
@@ -138,17 +143,44 @@ void sorting(t_list **a, t_list **b)
 }
 
 // Search for the min algo; Indexes and translation of the indeces
-void search_min(t_list **a)
+void search_min(t_list **a, t_list **b)
 {
 	t_list	*min;
+	t_list	*temp;
+	int		distance_to_bottom;
+	int		index_min;
 	
 	min = *a;
-	*a = (*a)->next;
-	while(*a != NULL)
+	temp = *a;
+	temp = (temp)->next;
+	while(temp != NULL)
 	{
-		if(min->content > (*a)->content)
-			min = *a;
+		if(min->content > temp->content)
+			min = temp;
 		else
-			*a = (*a)->next;
+			temp = (temp)->next;
 	}
+	// printf("The min value: %d\n", min->content);
+	index_min = min->init_index;
+	distance_to_bottom = min->total_count - (min->init_index + 1);
+	if(distance_to_bottom <= min->init_index)
+	{
+		while(distance_to_bottom != 0)
+		{
+			rra(a);
+			distance_to_bottom--;
+		}
+		rra(a);
+		pb(a, b);
+	}
+	else if (index_min < distance_to_bottom)
+	{
+		while(index_min != 0)
+		{
+			ra(a);
+			index_min--;
+		}
+		pb(a, b);
+	}
+	// (*a)->total_count = (*a)->total_count - 1;
 }

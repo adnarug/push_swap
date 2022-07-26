@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:50:34 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/23 14:25:07 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/26 13:56:43 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,19 @@ void	pa(t_list **a, t_list **b)
 	if(b == NULL)
 		return ;
 	ft_lstadd_front(a, reassign_front_node(b));
+
+	decrease_index(b, 1);
 	write (1, "pa\n", 3);
+}
+
+/*Push b - take the first element on the top of stack a and put it on top b*/
+void	pb(t_list **a, t_list **b)
+{
+	if (a == NULL)
+		return ;
+	ft_lstadd_front(b, reassign_front_node(a));
+	decrease_index(a, 1);
+	write (1, "pb\n", 3);
 }
 
 t_list	*reassign_front_node(t_list **list)
@@ -93,15 +105,6 @@ t_list	*reassign_back_node(t_list **list)
 	return (head);
 }
 
-/*Push b - take the first element on the top of stack a and put it on top b*/
-void	pb(t_list **a, t_list **b)
-{
-	if (a == NULL)
-		return ;
-	ft_lstadd_front(b, reassign_front_node(a));
-	write (1, "pb\n", 3);
-}
-
 /*Rotate a - shift up all elements in a by one*/
 void	ra(t_list **a)
 {
@@ -110,7 +113,7 @@ void	ra(t_list **a)
 	tmp = reassign_front_node(a);
 	tmp->next = NULL;
 	ft_lstadd_back(a, tmp, 0);
-	decrease_index(a);
+	decrease_index(a, 0);
 	write(1, "ra\n", 3);
 }
 
@@ -122,7 +125,7 @@ void	rb(t_list **b)
 	tmp = reassign_front_node(b);
 	tmp->next = NULL;
 	ft_lstadd_back(b, tmp, 0);
-	decrease_index(b);
+	decrease_index(b, 0);
 	write(1, "rb\n", 3);
 }
 
@@ -137,7 +140,7 @@ void rr(t_list **a, t_list **b)
 void	rra(t_list **a)
 {
 	*a = reassign_back_node(a);
-	increase_index(a);
+	increase_index(a, 0);
 	write(1,"rra\n", 4);
 }
 
@@ -145,7 +148,7 @@ void	rra(t_list **a)
 void rrb(t_list **b)
 {
 	*b = reassign_back_node(b);
-	increase_index(b);
+	increase_index(b, 0);
 	write(1, "rrb\n", 4);
 }
 
