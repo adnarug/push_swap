@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:01:49 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/23 13:58:14 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/27 13:16:33 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,13 @@
 typedef struct s_list
 {
 	int				content;
-	int				init_index;
 	int				index;
 	int				total_count;
 	struct s_list	*next;
 }	t_list;
 int				ft_tolower(int c);
 int				ft_toupper(int c);
-char			*ft_strnstr(const char *haystack,
-					const char *needle, size_t len);
+char			*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int				ft_strncmp(const char *str1, const char *str2, size_t n);
 int				ft_strlen(const char *c);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -47,7 +45,7 @@ int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 void			*ft_calloc(size_t count, size_t size);
 void			ft_bzero(void *s, size_t n);
-int				ft_atoi(const char *str);
+long int		ft_atoi(const char *str);
 char			**ft_split(char const *s, char c, int *counter);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);

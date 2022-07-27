@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:25:16 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/23 11:20:45 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:32:48 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*ft_lstnew(int content)
 	if (!lst)
 		return (NULL);
 	lst->content = content;
-	lst->init_index = 0;
+	lst->index = 0;
 	lst->index = 0;	
 	lst->next = NULL;
 	return (lst);

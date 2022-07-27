@@ -5,6 +5,8 @@
 #include <unistd.h>
 #include <stdio.h>
 #include "../printf/ft_printf.h"
+#define MAX_INT 2147483647
+#define MIN_INT -2147483647
 
 //Push_Swap
 void	ft_argv2list(char **nums, int count, t_list *a, int start);
@@ -16,13 +18,14 @@ void 	clean_nums(char **nums, int length);
 void	parsing_input(char *nums, int *count, t_list *latest_element);
 void	ft_news_nums2list(char **nums, int count, t_list *a);
 char	**typeof_input(char **nums, int *argc, int *start);
-void	check_repeats(int *new_nums, int number, int count);
+void	check_repeats(int *new_nums, int number, int counter);
 void	check_dupes(t_list *list, t_list *a);
 void    sorting(t_list **a, t_list **b);
-void    ft_default_struct(t_list **b, int total_count);
+//void    ft_default_struct(t_list **b, int total_count);
 void    decrease_index(t_list **lst, int flag_for_ttl);
 void    increase_index(t_list **lst, int flag_for_ttl);
 void    search_min(t_list **a, t_list   **b);
+void	check_for_sorted(t_list **a);
 
 //Instructions
 void	sa(t_list *a);

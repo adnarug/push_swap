@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pguranda <pguranda@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 13:52:34 by pguranda          #+#    #+#             */
-/*   Updated: 2022/04/19 16:13:08 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/27 13:13:28 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static int	ft_isnum(char c);
 static int	ft_white_space(const char *c);
 
-int	ft_atoi(const char *str)
+long int	ft_atoi(const char *str)
 {
 	int				i;
-	int				result_integer;
+	long int				result_integer;
 	int				sign;
 
 	i = 0;
