@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   cases.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 16:25:16 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/29 16:13:40 by pguranda         ###   ########.fr       */
+/*   Created: 2022/07/29 13:08:29 by pguranda          #+#    #+#             */
+/*   Updated: 2022/07/29 13:16:24 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/push_swap.h"
 
-t_list	*ft_lstnew(int content)
+int	no_of_inputs(int *argc)
 {
-	t_list	*lst;
+	if (argc <= 5)
+		return(1);
+	else if (argc > 5 && argc <= 100)
+		return(2);
+	else if (argc > 100)
+		return(3);
+}
 
-	lst = malloc(sizeof(t_list));
-	if (!lst)
-		return (NULL);
-	lst->content = content;
-	lst->index = 0;
-	lst->next = NULL;
-	return (lst);
+void sorting_small(t_list **a, t_list **b)
+{
+	
 }

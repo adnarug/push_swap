@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/27 11:31:35 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/29 11:33:28 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void ft_print_lst_b(t_list *b)
 	}
 }
 
-void ft_default_struct(t_list **b, int total_count)
-{
+// void ft_default_struct(t_list **b, int total_count)
+// {
 
-	(*b)->content = 0;
-	(*b)->index = 0;
-	(*b)->total_count = total_count;
-}
+// 	(*b)->content = 0;
+// 	(*b)->index = 0;
+// 	(*b)->total_count = total_count;
+// }
 
 void    decrease_index(t_list **lst, int flag_for_ttl)
 {

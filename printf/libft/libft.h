@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:01:49 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/27 13:16:33 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/29 15:00:25 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 typedef struct s_list
 {
 	int				content;
+	int				position;
 	int				index;
+	int				min_flag;
 	int				total_count;
 	struct s_list	*next;
 }	t_list;

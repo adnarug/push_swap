@@ -6,20 +6,20 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/27 17:47:54 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/30 13:06:27 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-
-int main(int argc, char **argv)
+//TODO: not sorting the quotation marks; creating a list with indices based on the min
+int	main(int argc, char **argv)
 {
 	t_list	*a;
 	t_list	*b;
 	int		i;
 
-	b = malloc(sizeof(t_list));
+	b = NULL;
 	i = 1;
 	if(argc < 2)
 		return (0);
@@ -27,72 +27,79 @@ int main(int argc, char **argv)
 	if (argc == 2)
 		return (0);
 	a = ft_lstnew(atoi(argv[i]));
-	if (i != 0) // TODO: passing of argc needs optimization
-		a->total_count = argc - 1;
-	else
+	if (i == 0)
+	{
+		argc--;
 		a->total_count = argc;
+	}
+	else
+		a->total_count = argc - 1;
 	i += 1;
 	//ft_default_struct(&b, a->total_count);
+	printf ("argc before argv2list %d\n", argc);
 	ft_argv2list(argv, argc, a, i);
 	check_for_sorted(&a);
 	//sorting(&a ,&b);
-	while (a != NULL & a->total_count > 1)	
-		search_min(&a, &b);
-	while (b->index > 0)
+		ft_print_lst_a(a);
+	while (a != NULL)
+		move_min_to_b(&a, &b, search_min(&a));
+	while (b != NULL)
 		pa(&a, &b);
 	ft_print_lst_a(a);
-	ft_print_lst_b(b);
-	// 	printf ("\nEnd of iteration \n ");
+	//ft_print_lst_b(b);
+	//printf ("\nEnd of iteration \n ");
 	ft_lst_free(a);
 	a = NULL;
 	ft_lst_free(b);
 	b = NULL;
-	// system("leaks push_swap");
+	//system("leaks push_swap");
 	return (0);
 }
 
-void ft_argv2list(char **nums, int argc, t_list *a, int start)
+
+void ft_argv2list(char **argv, int argc, t_list *a, int start)
 {
 	int 	counter;
 	t_list	*first;
 	int		number;
-	int		*new_nums;;
+	int		*arrayfor_check;
 	
 	number = 0;
 	counter = 1;
 	first = a;
 	//here argc is including the ./a.out
-	new_nums = malloc((argc - 1) * sizeof(int));
-	if (new_nums == NULL)
+	printf("argc: %d i: %d \n", argc, start);
+	arrayfor_check = malloc((argc) * sizeof(int));
+	if (arrayfor_check == NULL)
 		return ;
-	new_nums[0] = first->content;
+	arrayfor_check[0] = first->content;
 	while(start < argc)
 	{
-		check_isdigit(nums[start]);
-		number = ft_atoi(nums[start]);
+		checkis_digit(argv[start]);
+		number = ft_atoi(argv[start]);
 		if (number >= MAX_INT || number <= MIN_INT)
 		{
 			write(2, "Error", 6);
 			exit (0);
 		}
-		check_repeats(new_nums, number, counter);
-		new_nums[counter] = number;
+		check_repeats(arrayfor_check, number, counter);
+		arrayfor_check[counter] = number;
 		first = ft_lstadd_back(&first, ft_lstnew(number), counter);
 		start++;
 		counter++;
 	}
-	free(new_nums);
-	new_nums = NULL;
+	free(arrayfor_check);
+	arrayfor_check = NULL;
 }
 
-void check_repeats(int *new_nums, int number, int counter)
+void	check_repeats(int *arrayfor_check, int number, int counter)
 {
 	int	i;
 
 	i = 0;
 	while (i < counter)
 	{
-		if (new_nums[i] == number)
+		if (arrayfor_check[i] == number)
 		{
 			write (2, "Error", 6);
 			exit (1);
@@ -101,7 +108,7 @@ void check_repeats(int *new_nums, int number, int counter)
 	}
 }
 
-void	check_isdigit(char *s)
+void	checkis_digit(char *s)
 {
 	int i;
 
@@ -117,12 +124,12 @@ void	check_isdigit(char *s)
 	}
 }
 
-char **typeof_input(char **nums, int *argc, int *i)
+char	**typeof_input(char **nums, int *argc, int *i)
 {
 	int		counter;
 
 	counter = 0;
-	if(strchr(nums[1], ' ') != NULL)
+	if(ft_strchr(nums[1], ' ') != NULL)
 	{
 		nums = ft_split(nums[1], ' ', &counter);
 		*argc = counter;
@@ -131,7 +138,7 @@ char **typeof_input(char **nums, int *argc, int *i)
 	return(nums);
 }
 
-void sorting(t_list **a, t_list **b)
+void	sorting(t_list **a, t_list **b)
 {
 	pb(a, b);
 	while (*a != NULL)
@@ -151,24 +158,32 @@ void sorting(t_list **a, t_list **b)
 }
 
 // Search for the min algo; Indexes and translation of the indeces
-void search_min(t_list **a, t_list **b)
+t_list	*search_min(t_list **a)
 {
 	t_list	*min;
 	t_list	*temp;
-	int		distance_to_bottom;
-	int		index_min;
 	
 	min = *a;
 	temp = *a;
-	temp = (temp)->next;
-	while(temp != NULL)
+	temp = temp->next;
+	if ((*a)->total_count == 1)
+		min = *a;
+	while(temp != NULL && temp->total_count > 1)
 	{
 		if(min->content > temp->content)
 			min = temp;
 		else
-			temp = (temp)->next;
+			temp = temp->next;
 	}
-	// printf("The min value: %d\n", min->content);
+	min -> min_flag = 1;
+	return(min);
+}
+
+void	move_min_to_b(t_list **a, t_list **b, t_list *min)
+{
+	int		distance_to_bottom;
+	int		index_min;
+	
 	index_min = min->index;
 	distance_to_bottom = min->total_count - (min->index + 1);
 	if(distance_to_bottom <= min->index)
@@ -190,10 +205,9 @@ void search_min(t_list **a, t_list **b)
 		}
 		pb(a, b);
 	}
-	// (*a)->total_count = (*a)->total_count - 1;
 }
 
-void check_for_sorted(t_list **a)
+void	check_for_sorted(t_list **a)
 {
 	t_list	*temp;
 
@@ -220,5 +234,4 @@ void check_for_sorted(t_list **a)
 			check_for_sorted(&temp);
 		}
 	}
-	
 }

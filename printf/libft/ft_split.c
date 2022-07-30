@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 10:04:33 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/21 08:50:34 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/29 16:07:42 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ char	**ft_split(char const *s, char c, int *counter)
 		if (s[i] == c)
 			i++;
 	}
-	// *counter += 1;
-	// arr_str[*counter] = 0;
+	*counter += 1;
 	return (arr_str);
 }
 
