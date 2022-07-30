@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/30 13:06:27 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/30 17:02:37 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ int	main(int argc, char **argv)
 	ft_argv2list(argv, argc, a, i);
 	check_for_sorted(&a);
 	//sorting(&a ,&b);
-		ft_print_lst_a(a);
-	while (a != NULL)
-		move_min_to_b(&a, &b, search_min(&a));
-	while (b != NULL)
-		pa(&a, &b);
+	// while (a != NULL)
+	// 	move_min_to_b(&a, &b, search_min(&a));
+	// while (b != NULL)
+	// 	pa(&a, &b);
+	ft_print_lst_a(a);
+	lst_swap(&(a->next), &(a->next->next->next));
 	ft_print_lst_a(a);
 	//ft_print_lst_b(b);
 	//printf ("\nEnd of iteration \n ");

@@ -6,7 +6,7 @@
 #    By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 15:33:32 by pguranda          #+#    #+#              #
-#    Updated: 2022/07/22 13:38:15 by pguranda         ###   ########.fr        #
+#    Updated: 2022/07/30 13:51:08 by pguranda         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ GREEN = \033[0;92m
 
 SRC_FILES	=	lst_utils\
 				instructions\
+				cases\
 				main
 				
 SRC		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))

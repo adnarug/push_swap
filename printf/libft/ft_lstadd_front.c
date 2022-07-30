@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pguranda <pguranda@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:33:12 by pguranda          #+#    #+#             */
-/*   Updated: 2022/04/14 11:25:09 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:27:35 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,5 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 		return ;
 	new -> next = *lst;
 	*lst = new;
+	
 }

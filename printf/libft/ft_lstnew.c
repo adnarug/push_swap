@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:25:16 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/29 16:13:40 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:26:54 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ t_list	*ft_lstnew(int content)
 	lst->content = content;
 	lst->index = 0;
 	lst->next = NULL;
+	lst->previous = NULL;
 	return (lst);
 }
