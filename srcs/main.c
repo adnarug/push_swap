@@ -6,17 +6,18 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/30 17:02:37 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/04 15:30:48 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-//TODO: not sorting the quotation marks; creating a list with indices based on the min
+//TODO: need to transfer from the sorted array index to the values in the assigned array
 int	main(int argc, char **argv)
 {
 	t_list	*a;
 	t_list	*b;
+	t_list	*temp_a;
 	int		i;
 
 	b = NULL;
@@ -45,15 +46,13 @@ int	main(int argc, char **argv)
 	// while (b != NULL)
 	// 	pa(&a, &b);
 	ft_print_lst_a(a);
-	lst_swap(&(a->next), &(a->next->next->next));
-	ft_print_lst_a(a);
-	//ft_print_lst_b(b);
-	//printf ("\nEnd of iteration \n ");
+	temp_a = sorting(&a);
+	//assign_index(t_list **a, t_list **a_tmp);
 	ft_lst_free(a);
 	a = NULL;
 	ft_lst_free(b);
 	b = NULL;
-	//system("leaks push_swap");
+	// system("leaks push_swap");
 	return (0);
 }
 
@@ -139,24 +138,6 @@ char	**typeof_input(char **nums, int *argc, int *i)
 	return(nums);
 }
 
-void	sorting(t_list **a, t_list **b)
-{
-	pb(a, b);
-	while (*a != NULL)
-	{
-		if (*b == NULL)
-			pb (a, b);
-		if ((*a)->content > (*b)->content)
-			pb(a, b);
-		else
-		{
-			pa(a, b);
-			ra(a);
-		}
-	}
-	while (*b != NULL)
-		pa(a, b);
-}
 
 // Search for the min algo; Indexes and translation of the indeces
 t_list	*search_min(t_list **a)

@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 11:24:08 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/30 15:28:59 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:52:29 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*ft_lstadd_back(t_list **lst, t_list *new, int counter)
 	last = ft_lstlast(*lst);
 	new -> total_count = (*lst) -> total_count;
 	new	-> index = counter;
-	new -> previous = last;
+	// new -> previous = last;
 	last -> next = new;
 	return (last);
 }

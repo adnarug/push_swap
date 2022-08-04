@@ -6,14 +6,14 @@
 #    By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 15:33:32 by pguranda          #+#    #+#              #
-#    Updated: 2022/07/30 13:51:08 by pguranda         ###   ########.fr        #
+#    Updated: 2022/08/01 12:15:43 by pguranda         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	push_swap.a
 INCLUDE	=	include/push_swap.h
 CC		=	cc
-CFLAGS	=	-Werror -Wextra -Wall -g -I 
+CFLAGS	=	-Wextra -Wall -g -I #Werror!
 AR		=	ar rcs
 PRINTF	=	printf/
 OBJ_DIR	=	objs/
