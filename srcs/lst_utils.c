@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/01 11:50:59 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/04 19:25:20 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,24 @@ void    increase_index(t_list **lst, int flag_for_ttl)
 	}
 	
 	*lst  = head;
+}
+
+void lst_indexing(t_list **a, t_list **presorted_a)
+{
+	t_list *head_a;
+	t_list *head_presorted_a;
+
+	head_a = *a;
+	head_presorted_a = *presorted_a;
+	
+	head_a->position = head_presorted_a->index;
+	while (head_a->content != head_presorted_a->content)
+	{
+		head_presorted_a = head_presorted_a->next;
+		if(head_a->content == head_presorted_a->content)
+		{
+			head_a->position = head_presorted_a->index;
+			head_a=head_a->next;
+	}
+	
 }

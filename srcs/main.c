@@ -6,13 +6,13 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/04 18:36:58 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/04 20:01:38 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-//TODO: need to transfer from the sorted array index to the values in the assigned array
+//TODO: lst util indexing
 int	main(int argc, char **argv)
 {
 	t_list	*a;
