@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:08:29 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/04 17:42:31 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:35:57 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,14 +132,13 @@ t_list	*sorting(t_list **a)
 	mid_point = find_midpoint(presorted_a);
 	while (mid_point != NULL)
 	{
-		printf("Mid point is: %d \n", mid_point->content);
 		left_scan_result = scan_left(&presorted_a, mid_point);
 		right_scan_result = scan_right(&presorted_a, mid_point);
 		while(left_scan_result == mid_point && right_scan_result == NULL)
 		{
 			mid_point = mid_point->next;
 			if (mid_point == NULL)
-				return NULL;
+				return (presorted_header);
 			right_scan_result = scan_right(&presorted_a, mid_point);
 			left_scan_result = mid_point;
 		}
@@ -152,7 +151,6 @@ t_list	*sorting(t_list **a)
 			lst_swap(&left_scan_result, &right_scan_result);
 		i++;
 	}
-	ft_print_lst_a(presorted_header);
 	return(presorted_header);
 }
 
