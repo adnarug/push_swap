@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/04 20:01:38 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/05 19:58:25 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,14 @@ int	main(int argc, char **argv)
 	// 	move_min_to_b(&a, &b, search_min(&a));
 	// while (b != NULL)
 	// 	pa(&a, &b);
-	ft_print_lst_a(a);
 	temp_a = sorting(&a);
+	lst_indexing(&a, &temp_a);
 	ft_print_lst_a(temp_a);
+	pb(&a, &b);
+	pb(&a, &b);
 	//assign_index(t_list **a, t_list **a_tmp);
+	ft_print_lst_a(a);
+	ft_print_lst_b(b);
 	ft_lst_free(a);
 	a = NULL;
 	ft_lst_free(b);

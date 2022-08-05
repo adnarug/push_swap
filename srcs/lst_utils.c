@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/04 19:25:20 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/05 19:57:44 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void ft_print_lst_a(t_list *a)
 	printf("A: \n");
 	while (a != NULL)
 	{
-		printf(" %-5d   [i: %d, ttl: %d, next: %p, actual: %p]\n", a->content,  a->index, a->total_count, a->next, a);
+		printf(" %-5d   [i: %d, ttl: %d, position:%d, next: %p, current: %p,  previous: %p]\n", a->content,  a->index, a->total_count, a->position, a->next, a, a->previous);
 		a = a->next;
 	}
 }
@@ -43,7 +43,7 @@ void ft_print_lst_b(t_list *b)
 	printf("B: \n");
 	while (b != NULL)
 	{
-		printf(" %-5d   [i: %d, ttl: %d]\n", b->content, b->index, b->total_count);
+		printf(" %-5d   [i: %d, ttl: %d, position:%d, next: %p, current: %p,  previous: %p]\n", b->content,  b->index, b->total_count, b->position, b->next, b, b->previous);
 		b = b->next;
 	}
 }
@@ -100,15 +100,15 @@ void lst_indexing(t_list **a, t_list **presorted_a)
 
 	head_a = *a;
 	head_presorted_a = *presorted_a;
-	
-	head_a->position = head_presorted_a->index;
-	while (head_a->content != head_presorted_a->content)
+	while (head_a != NULL)
 	{
-		head_presorted_a = head_presorted_a->next;
 		if(head_a->content == head_presorted_a->content)
 		{
 			head_a->position = head_presorted_a->index;
-			head_a=head_a->next;
+			head_a = head_a->next;
+			head_presorted_a = *presorted_a;
+		}
+		else
+			head_presorted_a = head_presorted_a->next;
 	}
-	
 }
