@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:08:29 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/04 18:35:57 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/06 19:34:10 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static t_list *scan_left(t_list **a, t_list *mid_point)
 }
 
 //Finds smaller to the right
-static t_list *scan_right(t_list **a, t_list *mid_point)
+static t_list *scan_right(t_list *mid_point)
 {
 	t_list *temp;
 
@@ -133,13 +133,13 @@ t_list	*sorting(t_list **a)
 	while (mid_point != NULL)
 	{
 		left_scan_result = scan_left(&presorted_a, mid_point);
-		right_scan_result = scan_right(&presorted_a, mid_point);
+		right_scan_result = scan_right(mid_point);
 		while(left_scan_result == mid_point && right_scan_result == NULL)
 		{
 			mid_point = mid_point->next;
 			if (mid_point == NULL)
 				return (presorted_header);
-			right_scan_result = scan_right(&presorted_a, mid_point);
+			right_scan_result = scan_right(mid_point);
 			left_scan_result = mid_point;
 		}
 		if(left_scan_result != mid_point && right_scan_result == NULL)

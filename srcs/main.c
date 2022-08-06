@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/06 18:09:03 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/06 19:29:07 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	main(int argc, char **argv)
 	search_median(&a);
 	search_min(&a);
 	printf("\nIs it raw sorted: %d\n", check_raw_sorted(&a));
+	move_to_b(&a, &b);
+	sort_triple(&a);
 	ft_print_lst_a(a);
 	ft_print_lst_b(b);
 	ft_lst_free(a);
