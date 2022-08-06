@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/05 19:57:44 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/06 18:12:04 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,29 @@ void lst_indexing(t_list **a, t_list **presorted_a)
 		else
 			head_presorted_a = head_presorted_a->next;
 	}
+}
+
+int check_raw_sorted(t_list **a)
+{
+	t_list *temp;
+	t_list *min;
+	
+	temp = *a;
+	min = search_min(a);
+	while (min != NULL && min->next != NULL)
+	{
+		if (min->content < (min->next)->content)
+			min = min->next;
+		else
+			return (0);
+	}
+	min = search_min(a);
+	while (temp != min && temp->next != min)
+	{
+		if (temp->content < temp->next->content)
+			temp=temp->next;
+		else
+			return(0);
+	}
+	return(1);
 }

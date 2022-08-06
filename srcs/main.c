@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/05 19:58:25 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/06 18:09:03 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,19 @@ int	main(int argc, char **argv)
 	printf ("argc before argv2list %d\n", argc);
 	ft_argv2list(argv, argc, a, i);
 	check_for_sorted(&a);
-	//sorting(&a ,&b);
-	// while (a != NULL)
-	// 	move_min_to_b(&a, &b, search_min(&a));
-	// while (b != NULL)
-	// 	pa(&a, &b);
 	temp_a = sorting(&a);
 	lst_indexing(&a, &temp_a);
-	ft_print_lst_a(temp_a);
-	pb(&a, &b);
-	pb(&a, &b);
-	//assign_index(t_list **a, t_list **a_tmp);
+	search_max(&a);
+	search_median(&a);
+	search_min(&a);
+	printf("\nIs it raw sorted: %d\n", check_raw_sorted(&a));
 	ft_print_lst_a(a);
 	ft_print_lst_b(b);
 	ft_lst_free(a);
 	a = NULL;
 	ft_lst_free(b);
 	b = NULL;
-	system("leaks push_swap");
+	//system("leaks push_swap");
 	return (0);
 }
 
@@ -144,27 +139,7 @@ char	**typeof_input(char **nums, int *argc, int *i)
 }
 
 
-// Search for the min algo; Indexes and translation of the indeces
-t_list	*search_min(t_list **a)
-{
-	t_list	*min;
-	t_list	*temp;
-	
-	min = *a;
-	temp = *a;
-	temp = temp->next;
-	if ((*a)->total_count == 1)
-		min = *a;
-	while(temp != NULL && temp->total_count > 1)
-	{
-		if(min->content > temp->content)
-			min = temp;
-		else
-			temp = temp->next;
-	}
-	min -> min_flag = 1;
-	return(min);
-}
+
 
 void	move_min_to_b(t_list **a, t_list **b, t_list *min)
 {
