@@ -6,13 +6,13 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/06 19:31:11 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/07 15:34:13 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void   ft_lst_free(t_list *lst)
+void	ft_lst_free(t_list *lst)
 {
 	t_list	*pointer;
 	
@@ -28,7 +28,7 @@ void   ft_lst_free(t_list *lst)
 	pointer = NULL;
 }
 
-void ft_print_lst_a(t_list *a)
+void	ft_print_lst_a(t_list *a)
 {
 	printf("A: \n");
 	while (a != NULL)
@@ -38,12 +38,12 @@ void ft_print_lst_a(t_list *a)
 	}
 }
 
-void ft_print_lst_b(t_list *b)
+void	ft_print_lst_b(t_list *b)
 {
 	printf("B: \n");
 	while (b != NULL)
 	{
-		printf(" %-5d   [i: %d, ttl: %d, position:%d, next: %p, current: %p,  previous: %p]\n", b->content,  b->index, b->total_count, b->position, b->next, b, b->previous);
+		printf(" %-5d   [i: %d, ttl: %d, position:%d, total_score:%d]\n", b->content,  b->index, b->total_count, b->position, b->total_score);
 		b = b->next;
 	}
 }
@@ -75,7 +75,7 @@ void	decrease_index(t_list **lst, int flag_for_ttl)
 	*lst = head;
 }
 
-void    increase_index(t_list **lst, int flag_for_ttl)
+void	increase_index(t_list **lst, int flag_for_ttl)
 {
 	t_list	*head;
 
@@ -83,17 +83,21 @@ void    increase_index(t_list **lst, int flag_for_ttl)
 	while(*lst != NULL)
 	{
 		if(flag_for_ttl == 1)
-			(*lst)->total_count =(*lst)->total_count - 1;
-		(*lst)->index += 1;
+		{
+			(*lst)->total_count =(*lst)->total_count + 1;
+				if ((*lst)->next != NULL)
+					(*lst)->next->index += 1;
+		}
+		else
+			(*lst)->index += 1;
 		if ((*lst)->index >= (*lst)->total_count)
 			(*lst)->index = 0;
 		*lst = (*lst)->next;
 	}
-	
 	*lst  = head;
 }
 
-void lst_indexing(t_list **a, t_list **presorted_a)
+void	lst_indexing(t_list **a, t_list **presorted_a)
 {
 	t_list *head_a;
 	t_list *head_presorted_a;
@@ -113,7 +117,7 @@ void lst_indexing(t_list **a, t_list **presorted_a)
 	}
 }
 
-int check_raw_sorted(t_list **a)
+int	check_raw_sorted(t_list **a)
 {
 	t_list *temp;
 	t_list *min;
@@ -138,7 +142,7 @@ int check_raw_sorted(t_list **a)
 	return(1);
 }
 
-void move_to_b(t_list **a, t_list **b)
+void	move_to_b(t_list **a, t_list **b)
 {
 	t_list	*min;
 	t_list	*max;
@@ -166,12 +170,11 @@ void move_to_b(t_list **a, t_list **b)
 	}
 }
 
-void sort_triple(t_list **a)
+void	sort_triple(t_list **a)
 {
 	while(check_raw_sorted(a) == 0)
 	{
 		rra(a);
 		sa(*a);
 	}
-	
 }

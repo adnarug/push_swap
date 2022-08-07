@@ -6,7 +6,7 @@
 #    By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 15:33:32 by pguranda          #+#    #+#              #
-#    Updated: 2022/08/06 17:41:16 by pguranda         ###   ########.fr        #
+#    Updated: 2022/08/07 15:50:19 by pguranda         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ SRC_FILES	=	lst_utils\
 				instructions\
 				cases\
 				stats\
+				score\
+				move_process\
 				main
 				
 SRC		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))

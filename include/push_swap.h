@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include "../printf/ft_printf.h"
 #define MAX_INT 2147483647
-#define MIN_INT -2147483647
+#define MIN_INT -2147483648
 
 //Push_Swap
 void	ft_argv2list(char **nums, int count, t_list *a, int start);
@@ -28,12 +28,14 @@ t_list	*search_min(t_list **a);
 t_list	*search_max(t_list **a);
 t_list	*search_median(t_list **a);
 void	check_for_sorted(t_list **a);
-void sort_triple(t_list **a);
-int check_raw_sorted(t_list **a);
+void	sort_triple(t_list **a);
+int		check_raw_sorted(t_list **a);
 //int		no_of_inputs(t_list **a, int *argc);
 void	move_min_to_b(t_list **a, t_list **b, t_list *min);
-t_list  *sorting(t_list **a);
+t_list	*sorting(t_list **a);
 void move_to_b(t_list **a, t_list **b);
+void	scoring(t_list **a, t_list **b);
+void	move_process(t_list **a, t_list **b);
 //Instructions
 void	sa(t_list *a);
 void	pa(t_list **a, t_list **b);
@@ -48,9 +50,5 @@ void	rr(t_list **a, t_list **b);
 void	rra(t_list **a);
 void	rrb(t_list **b);
 void	rrr(t_list **a, t_list **b);
-
-
-
-
 
 #endif

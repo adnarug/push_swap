@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:50:34 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/26 13:56:43 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/07 13:28:54 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	pa(t_list **a, t_list **b)
 	ft_lstadd_front(a, reassign_front_node(b));
 
 	decrease_index(b, 1);
+	increase_index(a, 1);
 	write (1, "pa\n", 3);
 }
 
@@ -74,6 +75,7 @@ void	pb(t_list **a, t_list **b)
 		return ;
 	ft_lstadd_front(b, reassign_front_node(a));
 	decrease_index(a, 1);
+	increase_index(b, 1);
 	write (1, "pb\n", 3);
 }
 
@@ -84,8 +86,6 @@ t_list	*reassign_front_node(t_list **list)
 	if(list == NULL)
 		return (NULL);
 	head = *list;
-	if(head == NULL)
-		return (NULL);
 	*list = head->next;
 	return (head);
 }
