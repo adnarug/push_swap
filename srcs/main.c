@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/08 16:12:41 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:34:49 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	main(int argc, char **argv)
 		a->total_count = argc - 1;
 	i += 1;
 	//ft_default_struct(&b, a->total_count);
-	printf ("argc before argv2list %d\n", argc);
 	ft_argv2list(argv, argc, a, i);
+	give_index(&a);
 	check_for_sorted(&a);
 	temp_a = sorting(&a);
 	lst_indexing(&a, &temp_a);
@@ -48,16 +48,16 @@ int	main(int argc, char **argv)
 	search_min(&a);
 	move_to_b(&a, &b);//Check!!
 	sort_triple(&a);
-	printf("Sorted or not: %d", check_raw_sorted(&a));
+	// // rb(&b);
+	// printf("Sorted or not: %d", check_raw_sorted(&a));
 	while (b != NULL)
 	{
 		scoring(&a, &b);
 		move_process(&a, &b);
-		i++;
 	}
 	final_sort(&a);
 	ft_print_lst_a(a);
-	//ft_print_lst_b(b);
+	ft_print_lst_b(b);
 	ft_lst_free(a);
 	a = NULL;
 	ft_lst_free(b);
@@ -94,7 +94,7 @@ void ft_argv2list(char **argv, int argc, t_list *a, int start)
 		}
 		check_repeats(arrayfor_check, number, counter);
 		arrayfor_check[counter] = number;
-		first = ft_lstadd_back(&first, ft_lstnew(number), counter);
+		first = ft_lstadd_back(&first, ft_lstnew(number));
 		start++;
 		counter++;
 	}

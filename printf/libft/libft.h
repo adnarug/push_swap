@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:01:49 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/07 12:34:34 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:05:01 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void			ft_putendl_fd(char *s, int fd);
 int				ft_putnbr_fd(int n, int fd, int counter);
 t_list			*ft_lstnew(int content);
 void			ft_lstadd_front(t_list **lst, t_list *new);
-t_list			*ft_lstadd_back(t_list **lst, t_list *new, int counter);
+t_list			*ft_lstadd_back(t_list **lst, t_list *new);
 int				ft_lstsize(t_list *lst);
 t_list			*ft_lstlast(t_list *lst);
 //void			ft_lstadd_back(t_list **lst, t_list *new);

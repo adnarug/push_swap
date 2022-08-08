@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:50:34 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/08 12:02:27 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:33:06 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	sa(t_list *a)
 	write (1, "sa\n", 3);
 }
 
-/*Swap the first 2 elements on the top of stack b*/
+/*Swap the first 2 elements on the top of stack b*/ //TODO: missing the index update
 void	sb(t_list *b)
 {
 	if (b->next == NULL || b == NULL)
@@ -67,8 +67,8 @@ void	pa(t_list **a, t_list **b)
 		return ;
 	ft_lstadd_front(a, reassign_front_node(b));
 
-	decrease_index(b, 1);
-	increase_index(a, 1);
+	give_index(b);
+	give_index(a);
 	write (1, "pa\n", 3);
 }
 
@@ -78,8 +78,8 @@ void	pb(t_list **a, t_list **b)
 	if (a == NULL)
 		return ;
 	ft_lstadd_front(b, reassign_front_node(a));
-	decrease_index(a, 1);
-	increase_index(b, 1);
+	give_index(a);
+	give_index(b);
 	write (1, "pb\n", 3);
 }
 
@@ -116,8 +116,8 @@ void	ra(t_list **a)
 	// index = 
 	tmp = reassign_front_node(a);
 	tmp->next = NULL;
-	ft_lstadd_back(a, tmp, 0);
-	decrease_index(a, 0);
+	ft_lstadd_back(a, tmp);
+	give_index(a);
 	write(1, "ra\n", 3);
 }
 
@@ -128,8 +128,8 @@ void	rb(t_list **b)
 
 	tmp = reassign_front_node(b);
 	tmp->next = NULL;
-	ft_lstadd_back(b, tmp, 0);
-	decrease_index(b, 0);
+	ft_lstadd_back(b, tmp);
+	give_index(b);
 	write(1, "rb\n", 3);
 }
 
@@ -144,7 +144,7 @@ void rr(t_list **a, t_list **b)
 void	rra(t_list **a)
 {
 	*a = reassign_back_node(a);
-	increase_index(a, 0);
+	give_index(a);
 	write(1,"rra\n", 4);
 }
 
@@ -152,7 +152,7 @@ void	rra(t_list **a)
 void rrb(t_list **b)
 {
 	*b = reassign_back_node(b);
-	increase_index(b, 0);
+	give_index(b);
 	write(1, "rrb\n", 4);
 }
 

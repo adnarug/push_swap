@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/08 16:07:00 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:01:56 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,13 @@ void	ft_print_lst_b(t_list *b)
 void	decrease_index(t_list **lst, int flag_for_ttl)
 {
 	t_list	*head;
+	int		total;
 
 	head = *lst;
 	while(*lst != NULL)
 	{
+		total = ft_lstsize(*lst);
+		(*lst)->total_count = total;
 		if(flag_for_ttl == 1)
 			(*lst)->total_count =(*lst)->total_count - 1;
 		(*lst)->index -= 1;
@@ -181,5 +184,20 @@ void	sort_triple(t_list **a)
 	{
 		rra(a);
 		sa(*a);
+	}
+}
+
+void give_index(t_list **stack)
+{
+	t_list *temp;
+	int		i;
+	
+	temp = *stack;
+	i = 0;
+	while (temp != NULL)
+	{
+		temp->index = i;
+		temp = temp->next;
+		i++;
 	}
 }

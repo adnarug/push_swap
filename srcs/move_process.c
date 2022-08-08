@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 15:49:27 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/08 13:34:47 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/08 18:39:53 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	rotating_b(t_list **b, t_list *node_to_move)
 	
 	temp = *b;
 	index_of_node = node_to_move->index;
-	total = ft_lstlast(*b)->index + 1;
+	total = ft_lstsize(*b);
 	// printf("Total is: %d \n", total);
 	distance_to_bottom = total - (index_of_node + 1);
 	distance_to_top = index_of_node;
@@ -71,7 +71,7 @@ void	rotating_a(t_list **a, t_list *target_spot)
 	
 	temp = *a;
 	index_of_node = target_spot->index;
-	total = ft_lstlast(*a)->index + 1;
+	total = ft_lstsize(*a);
 	// printf("Total is: %d \n", total);
 	distance_to_bottom = total - (index_of_node + 1);
 	distance_to_top = index_of_node;

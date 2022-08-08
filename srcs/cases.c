@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:08:29 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/06 19:34:10 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:21:59 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ static t_list *lst_swap(t_list **first, t_list **second)
 	return (*first);
 }
 
-static t_list *find_midpoint(t_list *a)
+static t_list *find_midpoint(t_list **a)
 {
 	t_list	*mid_point;
 	t_list	*temp;
 	int		indexof_midpoint;
 
-	temp = a;
-	indexof_midpoint = (a)->total_count / 2;
+	temp = *a;
+	indexof_midpoint = ft_lstsize(*a) / 2;
 	while (temp != NULL)
 	{
 		if (temp->index == indexof_midpoint)
@@ -110,10 +110,11 @@ static t_list	*ft_lst_duplicate(t_list **a)
 	{
 		new_node = malloc(sizeof(t_list));
 		lst_copy_content(&temp_a, &new_node);
-		ft_lstadd_back(&new_lst, new_node, new_node->index);
+		ft_lstadd_back(&new_lst, new_node);
 		temp_a = temp_a->next;
 		new_lst = new_lst->next;
 	}
+	give_index(&new_head);
 	new_lst = NULL;
 	return (new_head);
 }
@@ -129,7 +130,7 @@ t_list	*sorting(t_list **a)
 	
 	presorted_a = ft_lst_duplicate(a);
 	presorted_header = presorted_a;
-	mid_point = find_midpoint(presorted_a);
+	mid_point = find_midpoint(&presorted_a);
 	while (mid_point != NULL)
 	{
 		left_scan_result = scan_left(&presorted_a, mid_point);

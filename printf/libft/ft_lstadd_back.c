@@ -6,13 +6,13 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 11:24:08 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/05 19:52:26 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:03:08 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstadd_back(t_list **lst, t_list *new, int counter)
+t_list	*ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list				*last;
 
@@ -25,7 +25,7 @@ t_list	*ft_lstadd_back(t_list **lst, t_list *new, int counter)
 	}
 	last = ft_lstlast(*lst);
 	new -> total_count = (*lst) -> total_count;
-	new	-> index = counter;
+	new	-> index = 0;
 	new -> previous = last;
 	last -> next = new;
 	return (last);
