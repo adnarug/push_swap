@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/07 15:34:13 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/08 11:59:34 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int	check_raw_sorted(t_list **a)
 	min = search_min(a);
 	while (min != NULL && min->next != NULL)
 	{
-		if (min->content < (min->next)->content)
+		if (min->content > (min->next)->content)
 			min = min->next;
 		else
 			return (0);
@@ -158,11 +158,11 @@ void	move_to_b(t_list **a, t_list **b)
 		ra(a);
 		temp = *a;
 	}
-	while(ft_lstsize(*a) != 3)
+	while(ft_lstsize(*a) != 3)//could it turn out to be less than 3?
 	{
 		pb(a, b);
 		temp = *a;
-		if (temp == min || temp == max || temp == median)
+		while(ft_lstsize(*a) > 3 && (temp == min || temp == max || temp == median))
 		{
 			ra(a);
 			temp = *a;

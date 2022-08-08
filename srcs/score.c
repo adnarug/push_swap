@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 12:16:30 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/07 16:45:12 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/08 13:31:18 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	distance_to_move(t_list **stack, t_list *node)
 
 //Going thorugh stack a and check the diffs in positions with pos of node. Skipping initial 
 //values with the lower positions, before the init. Looking at difference 
-static t_list *target_spot_in_a(t_list **a, t_list *node)
+t_list *target_spot_in_a(t_list **a, t_list *node)
 {
 	t_list 	*temp;
 	t_list	*best_match;
@@ -52,7 +52,10 @@ static t_list *target_spot_in_a(t_list **a, t_list *node)
 	{
 		actual_diff = temp->position - node->position;
 		if(actual_diff < best_diff && actual_diff > 0)
+		{
 			best_match = temp;
+			best_diff = actual_diff;
+		}
 		temp = temp->next;
 	}
 	return(best_match);
@@ -64,6 +67,7 @@ void	scoring(t_list **a, t_list **b)
 	t_list *temp_b;
 	
 	temp_b = *b;
+	target_spot = NULL;
 	while (temp_b != NULL)
 	{
 		temp_b->score_b = distance_to_move(b, temp_b) + 1;//+pb
@@ -77,5 +81,6 @@ void	scoring(t_list **a, t_list **b)
 	// match_in_a = match_with_a(*a, *b);
 	// score_a = distance_to_move(*a, match_in_a);
 	// total_sore = score_b + score_a// put into the struct
+	return ;
 }
 

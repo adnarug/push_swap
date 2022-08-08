@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/07 18:38:51 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/08 13:41:10 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char **argv)
 	t_list	*a;
 	t_list	*b;
 	t_list	*temp_a;
+	t_list	*target_spot;
 	int		i;
 
 	b = NULL;
@@ -42,17 +43,21 @@ int	main(int argc, char **argv)
 	check_for_sorted(&a);
 	temp_a = sorting(&a);
 	lst_indexing(&a, &temp_a);
-	// search_max(&a);
-	// search_median(&a);
-	// search_min(&a);
+	search_max(&a);
+	search_median(&a);
+	search_min(&a);
 	printf("\nIs it raw sorted: %d\n", check_raw_sorted(&a));
-	move_to_b(&a, &b);
+	move_to_b(&a, &b);//Check!!
 	sort_triple(&a);
-	scoring(&a, &b);
-	move_process(&a, &b);
-	
+	while (b != NULL)
+	{
+		scoring(&a, &b);
+		move_process(&a, &b);
+		i++;
+	}
+	final_sort(&a);
 	ft_print_lst_a(a);
-	ft_print_lst_b(b);
+	//ft_print_lst_b(b);
 	ft_lst_free(a);
 	a = NULL;
 	ft_lst_free(b);
@@ -198,4 +203,14 @@ void	check_for_sorted(t_list **a)
 			check_for_sorted(&temp);
 		}
 	}
+}
+
+void	final_sort(t_list **a)
+{
+	t_list *start;
+
+	start = search_min(a);
+	printf("The final min is: %d", start->content);
+	while(*a != start)
+		rotating_a(a, start);
 }

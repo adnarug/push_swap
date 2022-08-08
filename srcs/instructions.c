@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:50:34 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/07 13:28:54 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/08 12:02:27 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,20 @@ void	sa(t_list *a)
 {
 	if (a->next == NULL || a == NULL)
 		return;
-	int first;
-	int second;
+	t_list *first;
+	t_list *second;
+	t_list swap;
 	
-	first = a->content;
-	second = a->next->content;
-	first = first + second;
-	second = first - second;
-	first = first - second;
-	a->content = first;
-	a->next->content = second;
+	first = a;
+	second = a->next;
+	swap.content = first->content;
+	swap.position = first->position;
+	first->content = second->content;
+	first->position = second->position;
+	second->content = swap.content;
+	second->position = swap.position;
+	first->index = 0;
+	second->index = 1;
 	write (1, "sa\n", 3);
 }
 
