@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/08 11:59:34 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:07:00 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,14 @@ int	check_raw_sorted(t_list **a)
 	min = search_min(a);
 	while (min != NULL && min->next != NULL)
 	{
-		if (min->content > (min->next)->content)
+		if (min->content < (min->next)->content)
 			min = min->next;
 		else
+			return (0);
+	}
+	if(temp->next == search_min(a))
+	{
+		if (temp->content < min->content)
 			return (0);
 	}
 	min = search_min(a);

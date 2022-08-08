@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/08 13:41:10 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:12:41 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	main(int argc, char **argv)
 	search_max(&a);
 	search_median(&a);
 	search_min(&a);
-	printf("\nIs it raw sorted: %d\n", check_raw_sorted(&a));
 	move_to_b(&a, &b);//Check!!
 	sort_triple(&a);
+	printf("Sorted or not: %d", check_raw_sorted(&a));
 	while (b != NULL)
 	{
 		scoring(&a, &b);
@@ -176,7 +176,7 @@ void	move_min_to_b(t_list **a, t_list **b, t_list *min)
 	}
 }
 
-void	check_for_sorted(t_list **a)
+int	check_for_sorted(t_list **a)
 {
 	t_list	*temp;
 
@@ -186,23 +186,23 @@ void	check_for_sorted(t_list **a)
 		if(temp->content < temp->next->content)
 			temp = temp->next;
 		else 
-			return ;
+			return(0);
 		if(temp->next == NULL)
-			exit(0);
+			return (1);
 	}
-	temp = *a;
-	while(temp->next != NULL)// the case if the numbers are decreasing, only rra needed. recursion will exit after the first one 
-	{
-		if(temp->content > temp->next->content)
-			temp = temp->next;
-		else 
-			return;
-		if (temp->next == NULL)
-		{
-			rra(a);
-			check_for_sorted(&temp);
-		}
-	}
+	// temp = *a;
+	// while(temp->next != NULL)// the case if the numbers are decreasing, only rra needed. recursion will exit after the first one 
+	// {
+	// 	if(temp->content > temp->next->content)
+	// 		temp = temp->next;
+	// 	else 
+	// 		return (0);
+	// 	if (temp->next == NULL)
+	// 	{
+	// 		rra(a);
+	// 		check_for_sorted(&temp);
+	// 	}
+	// }
 }
 
 void	final_sort(t_list **a)
@@ -211,6 +211,6 @@ void	final_sort(t_list **a)
 
 	start = search_min(a);
 	printf("The final min is: %d", start->content);
-	while(*a != start)
+	while(check_for_sorted(a) == 0)
 		rotating_a(a, start);
 }
