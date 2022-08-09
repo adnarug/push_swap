@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:08:29 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/08 19:21:59 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:43:22 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ static t_list	*ft_lst_duplicate(t_list **a)
 	return (new_head);
 }
 
-t_list	*sorting(t_list **a)
+static t_list	*first_sorting(t_list **a)
 {
 	t_list	*mid_point;
 	t_list	*presorted_a;
@@ -155,6 +155,50 @@ t_list	*sorting(t_list **a)
 	return(presorted_header);
 }
 
+static t_list	*double_check_sorting(t_list **presorted)
+{
+	t_list	*min_point;
+	t_list	*presorted_a;
+	t_list	*presorted_header;
+	t_list	*left_scan_result;
+	t_list	*right_scan_result;
+	int i = 0;
+	
+	presorted_header = *presorted;
+	min_point = search_min(&presorted_a);
+	while (min_point != NULL)
+	{
+		left_scan_result = scan_left(&presorted_a, min_point);
+		right_scan_result = scan_right(min_point);
+		while(left_scan_result == min_point && right_scan_result == NULL)
+		{
+			min_point = min_point->next;
+			if (min_point == NULL)
+				return (presorted_header);
+			right_scan_result = scan_right(min_point);
+			left_scan_result = min_point;
+		}
+		if(left_scan_result != min_point && right_scan_result == NULL)
+		{
+			right_scan_result = min_point;
+			min_point = lst_swap(&left_scan_result, &right_scan_result);
+		}
+		else
+			lst_swap(&left_scan_result, &right_scan_result);
+		i++;
+	}
+	return(presorted_header);
+}
+
+t_list	*sorting(t_list **a)
+{
+	t_list *presorted;
+	t_list *final_sorted;
+
+	presorted = first_sorting(a);
+	final_sorted = double_check_sorting(&presorted);
+	return(final_sorted);
+}
 // void assign_list(t_list **a, t_list **a_temp)
 // {
 // 	t_list temp1;

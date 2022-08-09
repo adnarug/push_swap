@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/09 13:52:05 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:45:12 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,20 @@ int	main(int argc, char **argv)
 	while (b != NULL)
 	{
 		scoring(&a, &b);
-		printf ("\n\n The number of iter: %d\n ", i);
+		// printf ("\n\n The number of iter: %d\n ", i);
 		move_process(&a, &b);
-		ft_print_lst_a(a);
+		// ft_print_lst_a(a);
 		//ft_print_lst_b(b);
 		i++;
 	}
 	final_sort(&a);
-	ft_print_lst_a(a);
-	ft_print_lst_b(b);
+	// ft_print_lst_a(a);
+	// ft_print_lst_b(b);
 	ft_lst_free(a);
 	a = NULL;
 	ft_lst_free(b);
 	b = NULL;
-	//system("leaks push_swap");
+	// system("leaks push_swap");
 	return (0);
 }
 
@@ -82,7 +82,7 @@ void ft_argv2list(char **argv, int argc, t_list *a, int start)
 	counter = 1;
 	first = a;
 	//here argc is including the ./a.out
-	printf("argc: %d i: %d \n", argc, start);
+	// printf("argc: %d i: %d \n", argc, start);
 	arrayfor_check = malloc((argc) * sizeof(int));
 	if (arrayfor_check == NULL)
 		return ;
@@ -179,7 +179,7 @@ void	move_min_to_b(t_list **a, t_list **b, t_list *min)
 		pb(a, b);
 	}
 }
-
+//Returns 0 is not sorted
 int	check_for_sorted(t_list **a)
 {
 	t_list	*temp;
@@ -214,7 +214,8 @@ void	final_sort(t_list **a)
 	t_list *start;
 
 	start = search_min(a);
-	printf("The final min is: %d", start->content);
+	// printf("The final min is: %d", start->content);
 	while(check_for_sorted(a) == 0)
 		rotating_a(a, start);
+	return ;
 }
