@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.a": "c",
+			"push_swap.h": "c",
+			"ft_printf.h": "c",
+			"libft.h": "c",
+			"complex": "c",
+			"__node_handle": "c"
+		}
+	}
+}

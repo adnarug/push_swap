@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/08 19:01:56 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/09 10:58:41 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_print_lst_a(t_list *a)
 	printf("A: \n");
 	while (a != NULL)
 	{
-		printf(" %-5d   [i: %d, ttl: %d, position:%d, next: %p, current: %p,  previous: %p]\n", a->content,  a->index, a->total_count, a->position, a->next, a, a->previous);
+		printf(" %-5d   [i: %d, position:%d]\n", a->content, a->index, a->position);
 		a = a->next;
 	}
 }
@@ -43,7 +43,7 @@ void	ft_print_lst_b(t_list *b)
 	printf("B: \n");
 	while (b != NULL)
 	{
-		printf(" %-5d   [i: %d, ttl: %d, position:%d, total_score:%d]\n", b->content,  b->index, b->total_count, b->position, b->total_score);
+		printf(" %-5d   [i: %d, position:%d, total_score:%d]\n", b->content,  b->index, b->position, b->total_score);
 		b = b->next;
 	}
 }

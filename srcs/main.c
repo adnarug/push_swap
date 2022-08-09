@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/08 19:34:49 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:52:05 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,11 @@ int	main(int argc, char **argv)
 	while (b != NULL)
 	{
 		scoring(&a, &b);
+		printf ("\n\n The number of iter: %d\n ", i);
 		move_process(&a, &b);
+		ft_print_lst_a(a);
+		//ft_print_lst_b(b);
+		i++;
 	}
 	final_sort(&a);
 	ft_print_lst_a(a);
@@ -154,7 +158,7 @@ void	move_min_to_b(t_list **a, t_list **b, t_list *min)
 	int		index_min;
 	
 	index_min = min->index;
-	distance_to_bottom = min->total_count - (min->index + 1);
+	distance_to_bottom = ft_lstsize(*a) - (min->index + 1);
 	if(distance_to_bottom <= min->index)
 	{
 		while(distance_to_bottom != 0)

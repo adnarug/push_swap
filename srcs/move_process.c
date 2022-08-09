@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 15:49:27 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/08 18:39:53 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:50:58 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ static void	rotating_b(t_list **b, t_list *node_to_move)
 	// printf("Total is: %d \n", total);
 	distance_to_bottom = total - (index_of_node + 1);
 	distance_to_top = index_of_node;
+	if(distance_to_bottom == 0)
+	{
+		rrb(b);
+		return ;
+	}
 	if(distance_to_bottom < distance_to_top)
 	{
 		while(distance_to_bottom != 0)
@@ -54,11 +59,13 @@ static void	rotating_b(t_list **b, t_list *node_to_move)
 		rrb(b);
 	}
 	else
+	{
 		while(index_of_node != 0)
 		{
 			rb(b);
 			index_of_node--;
 		}
+	}
 }
 
 void	rotating_a(t_list **a, t_list *target_spot)
@@ -75,21 +82,29 @@ void	rotating_a(t_list **a, t_list *target_spot)
 	// printf("Total is: %d \n", total);
 	distance_to_bottom = total - (index_of_node + 1);
 	distance_to_top = index_of_node;
+	if(distance_to_bottom == 0)
+	{
+		rra(a);
+		return ;
+	}
 	if(distance_to_bottom < distance_to_top)
 	{
 		while(distance_to_bottom != 0)
 		{
 			rra(a);
+			// printf("distance to bottom: %d \n", distance_to_bottom);
 			distance_to_bottom--;
 		}
 		rra(a);
 	}
 	else
+	{
 		while(index_of_node != 0)
 		{
 			ra(a);
 			index_of_node--;
 		}
+	}
 }
 
 void	move_process(t_list **a, t_list **b)
@@ -100,8 +115,10 @@ void	move_process(t_list **a, t_list **b)
 
 		to_move = search_cheapest_move(b);
 		target_spot = target_spot_in_a(a, to_move);
-		printf("Element to move: %d score : %d target : %d \n",to_move->content, to_move->total_score, target_spot->content);
+		printf("BEFORE MOVE \n NODE  : %d position: %d score: %d \n TARGET: %d position: %d\n\n",to_move->content, to_move->position, to_move->total_score, target_spot->content, target_spot->position);	
+		// ft_print_lst_b(b);
 		rotating_b(b, to_move);
 		rotating_a(a, target_spot);
 		pa(a, b);
+		
 }

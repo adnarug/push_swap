@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 17:41:17 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/06 17:52:12 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:42:42 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_list *search_median(t_list **a)
 	t_list *temp;
 
 	temp = *a;
-	while (temp->position != (temp->total_count)/2)
+	while (temp->position != (ft_lstsize(*a))/2)
 		temp = temp->next;
 	printf("Median is %d \n", temp->content);
 	return(temp);	
