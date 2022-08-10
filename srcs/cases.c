@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:08:29 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/09 14:43:22 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/10 11:01:54 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,7 @@ static void	lst_copy_content(t_list **src, t_list **dst)
 	(*dst)->content = (*src)->content;
 	(*dst)->position = (*src)->position;
 	(*dst)->index = (*src)->index;
-	(*dst)->min_flag = (*src)->min_flag;
-	(*dst)->total_count = (*src)->total_count;
 	(*dst)->next = NULL;
-	
 }
 
 static t_list	*ft_lst_duplicate(t_list **a)
@@ -115,7 +112,8 @@ static t_list	*ft_lst_duplicate(t_list **a)
 		new_lst = new_lst->next;
 	}
 	give_index(&new_head);
-	new_lst = NULL;
+	// free(new_lst);
+	// new_lst = NULL;
 	return (new_head);
 }
 
@@ -152,6 +150,8 @@ static t_list	*first_sorting(t_list **a)
 			lst_swap(&left_scan_result, &right_scan_result);
 		i++;
 	}
+	// free(presorted_a);
+	// presorted_a = NULL;
 	return(presorted_header);
 }
 

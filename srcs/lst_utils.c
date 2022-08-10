@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/09 10:58:41 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/10 11:20:25 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_print_lst_b(t_list *b)
 	printf("B: \n");
 	while (b != NULL)
 	{
-		printf(" %-5d   [i: %d, position:%d, total_score:%d]\n", b->content,  b->index, b->position, b->total_score);
+		printf(" %-5d   [i: %d, position:%d, total_score:%d]\n", b->content,  b->index, b->position, b->score);
 		b = b->next;
 	}
 }
@@ -56,64 +56,44 @@ void	ft_print_lst_b(t_list *b)
 // 	(*b)->total_count = total_count;
 // }
 
-void	decrease_index(t_list **lst, int flag_for_ttl)
-{
-	t_list	*head;
-	int		total;
+// void	decrease_index(t_list **lst, int flag_for_ttl)
+// {
+// 	t_list	*head;
+// 	int		total;
 
-	head = *lst;
-	while(*lst != NULL)
-	{
-		total = ft_lstsize(*lst);
-		(*lst)->total_count = total;
-		if(flag_for_ttl == 1)
-			(*lst)->total_count =(*lst)->total_count - 1;
-		(*lst)->index -= 1;
-		if((*lst)->index < 0)
-			(*lst)->index = (*lst)->total_count - 1;
-		if ((*lst)->index >= (*lst)->total_count)
-			(*lst)->index = 0;
-		*lst = (*lst)->next;
-	}
-	*lst = head;
-}
+// 	head = *lst;
+// 	while(*lst != NULL)
+// 	{
+// 		total = ft_lstsize(*lst);
+// 		(*lst)->total_count = total;
+// 		if(flag_for_ttl == 1)
+// 			(*lst)->total_count =(*lst)->total_count - 1;
+// 		(*lst)->index -= 1;
+// 		if((*lst)->index < 0)
+// 			(*lst)->index = (*lst)->total_count - 1;
+// 		if ((*lst)->index >= (*lst)->total_count)
+// 			(*lst)->index = 0;
+// 		*lst = (*lst)->next;
+// 	}
+// 	*lst = head;
+// }
 
-void	increase_index(t_list **lst, int flag_for_ttl)
-{
-	t_list	*head;
 
-	head = *lst;
-	while(*lst != NULL)
-	{
-		if(flag_for_ttl == 1)
-		{
-			(*lst)->total_count =(*lst)->total_count + 1;
-				if ((*lst)->next != NULL)
-					(*lst)->next->index += 1;
-		}
-		else
-			(*lst)->index += 1;
-		if ((*lst)->index >= (*lst)->total_count)
-			(*lst)->index = 0;
-		*lst = (*lst)->next;
-	}
-	*lst  = head;
-}
 
-void	lst_indexing(t_list **a, t_list **presorted_a)
+void	lst_indexing(t_list **a, t_list *presorted_a)
 {
 	t_list *head_a;
 	t_list *head_presorted_a;
 
 	head_a = *a;
-	head_presorted_a = *presorted_a;
+	head_presorted_a = presorted_a;
 	while (head_a != NULL)
 	{
 		if(head_a->content == head_presorted_a->content)
 		{
 			head_a->position = head_presorted_a->index;
 			head_a = head_a->next;
-			head_presorted_a = *presorted_a;
+			head_presorted_a = presorted_a;
 		}
 		else
 			head_presorted_a = head_presorted_a->next;

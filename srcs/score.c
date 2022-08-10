@@ -6,12 +6,13 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 12:16:30 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/08 18:44:50 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:44:07 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+//Deciding whether it is worth moving the element up or down before pushing.
 static int	distance_to_move(t_list **stack, t_list *node)
 {
 	int		distance_to_bottom;
@@ -32,8 +33,7 @@ static int	distance_to_move(t_list **stack, t_list *node)
 		return(distance_to_top);
 }
 
-//Going thorugh stack a and check the diffs in positions with pos of node. Skipping initial 
-//values with the lower positions, before the init. Looking at difference 
+// Finding the best element (by position) to be put on top of stack a, before pushing from b.
 t_list *target_spot_in_a(t_list **a, t_list *node)
 {
 	t_list 	*temp;
@@ -60,27 +60,42 @@ t_list *target_spot_in_a(t_list **a, t_list *node)
 	}
 	return(best_match);
 }
-// Distance to move or distance to the tail?
+// Scoring elements in b on how many instr in both stack are needed to place it correctly
 void	scoring(t_list **a, t_list **b)
 {
 	t_list *target_spot;
 	t_list *temp_b;
+	int		score_a;
+	int		score_b;
 	
 	temp_b = *b;
 	target_spot = NULL;
+	score_a = 0;
+	score_b = 0;
 	while (temp_b != NULL)
 	{
-		temp_b->score_b = distance_to_move(b, temp_b) + 1;//+pb
+		score_b = distance_to_move(b, temp_b) + 1;//+pb
 		target_spot = target_spot_in_a(a, temp_b);
-		temp_b->score_a = distance_to_move(a, target_spot);
-		temp_b->total_score = temp_b->score_a + temp_b->score_b;
+		score_a = distance_to_move(a, target_spot);
+		temp_b->score = score_a + score_b;
 		temp_b = temp_b->next;
 	}
-	// t_list	*match_in_a;
-	// score_b = distance_to_move(*b);
-	// match_in_a = match_with_a(*a, *b);
-	// score_a = distance_to_move(*a, match_in_a);
-	// total_sore = score_b + score_a// put into the struct
 	return ;
 }
 
+void	presorting_check(t_list **a)
+{
+	if(check_for_sorted(a) == 1)
+		exit (0);
+	if(check_raw_sorted(a) == 1)
+	{
+		final_sort(a);
+		exit (0);
+	}
+	if(ft_lstsize(*a) == 3)
+	{
+		sort_triple(a);
+		final_sort(a);
+		exit(0);
+	}
+}

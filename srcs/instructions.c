@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:50:34 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/08 19:33:06 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/10 11:21:03 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void rrb(t_list **b)
 	give_index(b);
 	write(1, "rrb\n", 4);
 }
-
+//rra and rrb together
 void	rrr(t_list **a, t_list **b)
 {
 	rra(a);

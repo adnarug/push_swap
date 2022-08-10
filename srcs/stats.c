@@ -6,13 +6,14 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 17:41:17 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/09 14:02:58 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/10 10:14:44 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-// Search for the min algo; Indexes and translation of the indeces
+//TODO: Think of guards
+//Find and return the min value in a stack
 t_list	*search_min(t_list **a)
 {
 	t_list	*min;
@@ -21,9 +22,7 @@ t_list	*search_min(t_list **a)
 	min = *a;
 	temp = *a;
 	temp = temp->next;
-	if ((*a)->total_count == 1)
-		min = *a;
-	while(temp != NULL && temp->total_count > 1)
+	while(temp != NULL)
 	{
 		if(min->content > temp->content)
 			min = temp;
@@ -31,10 +30,10 @@ t_list	*search_min(t_list **a)
 			temp = temp->next;
 	}
 	
-	min -> min_flag = 1;
 	return(min);
 }
 
+//Find and return the max value in a stack
 t_list *search_max(t_list **a)
 {	
 	t_list	*max;
@@ -43,9 +42,7 @@ t_list *search_max(t_list **a)
 	max = *a;
 	temp = *a;
 	temp = temp->next;
-	if ((*a)->total_count == 1)
-		max = *a;
-	while(temp != NULL && temp->total_count > 1)
+	while(temp != NULL)
 	{
 		if(max->content < temp->content)
 			max = temp;
@@ -56,10 +53,11 @@ t_list *search_max(t_list **a)
 	return(max);
 }
 
+//Find and return the median value in a stack
 t_list *search_median(t_list **a)
 {
 	t_list *temp;
-
+	
 	temp = *a;
 	while (temp->position != (ft_lstsize(*a))/2)
 		temp = temp->next;

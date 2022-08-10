@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 15:49:27 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/09 14:44:13 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/09 18:17:45 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ static t_list	*search_cheapest_move(t_list **b)
 	
 	min = *b;
 	temp = *b;
-	temp = temp->next;
 	while(temp != NULL)
 	{
-		if(temp->total_score < min->total_score)
+		if(temp->score < min->score)
 			min = temp;
 		else
 			temp = temp->next;
@@ -111,14 +110,12 @@ void	move_process(t_list **a, t_list **b)
 {
 	t_list	*to_move;
 	t_list	*target_spot;
-	int	i;
 
-		to_move = search_cheapest_move(b);
-		target_spot = target_spot_in_a(a, to_move);
-		// printf("BEFORE MOVE \n NODE  : %d position: %d score: %d \n TARGET: %d position: %d\n\n",to_move->content, to_move->position, to_move->total_score, target_spot->content, target_spot->position);	
-		// ft_print_lst_b(b);
-		rotating_b(b, to_move);
-		rotating_a(a, target_spot);
-		pa(a, b);
-		
+	to_move = search_cheapest_move(b);
+	target_spot = target_spot_in_a(a, to_move);
+	// printf("BEFORE MOVE \n NODE  : %d position: %d score: %d \n TARGET: %d position: %d\n\n",to_move->content, to_move->position, to_move->total_score, target_spot->content, target_spot->position);	
+	// ft_print_lst_b(b);
+	rotating_b(b, to_move);
+	rotating_a(a, target_spot);
+	pa(a, b);	
 }
