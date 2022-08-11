@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 17:30:21 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/10 17:51:23 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/11 20:05:55 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,20 @@ static void	checkis_digit(char *s)
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (ft_isdigit(s[i]) == 0 && s[i] != '+' && s[i] != '-')// Check if there is a non-digit
+		if (s[i] == '+' || s[i]	== '-' || s[i] == '\t' || s[i] == ' ')
+			i++;
+		if (ft_isdigit(s[i]) == 0)// Check if there is a non-digit
 		{
 			write (2, "Error\n", 6);
 			exit(1);
 		}
-		i++;
-	}
+		if (ft_isdigit(s[i]) == 1 && ft_isdigit(s[i + 1]) == 0 && s[i + 1] != '\0' && s[i + 1] != ' ')
+		{
+			write (2, "Error\n", 6);
+			exit(1);
+		}
+		 i++;
+	} 
 }
 
 static void	check_limits(long int number)
@@ -53,6 +60,7 @@ static void	check_limits(long int number)
 		exit (0);
 	}
 }
+
 static char	**typeof_input(char **new_argv, int *argc, int *i)
 {
 	int		counter;
@@ -60,18 +68,21 @@ static char	**typeof_input(char **new_argv, int *argc, int *i)
 
 	counter = 0;
 	iter = 0;
-	if(ft_strchr(new_argv[1], ' ') != NULL)
+	printf("Cheeck %s\n",new_argv[1]);
+	if(ft_strchr(new_argv[1], ' ') != NULL || ft_strchr(new_argv[1], '	') != NULL)
 	{
 		if (*argc != 2)
 		{
-			write (2, "Error\n", 7);
+			write (2, "Error\n", 6);
 			exit(1);
 		}
 		new_argv = ft_split(new_argv[1], ' ', &counter);
 		*argc = counter;
 		*i = 0;
 	}
-	while (*i == 0 && iter < (counter - 1))
+	if (*i != 0)
+		iter = 1;
+	while (iter < *argc - 1)
 	{
 		checkis_digit(new_argv[iter]);
 		iter++;
