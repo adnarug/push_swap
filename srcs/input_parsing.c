@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 17:30:21 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/11 20:05:55 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/12 14:34:00 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ static char	**typeof_input(char **new_argv, int *argc, int *i)
 
 	counter = 0;
 	iter = 0;
-	printf("Cheeck %s\n",new_argv[1]);
 	if(ft_strchr(new_argv[1], ' ') != NULL || ft_strchr(new_argv[1], '	') != NULL)
 	{
 		if (*argc != 2)
@@ -133,7 +132,7 @@ t_list	*input_parsing(char **argv,int *argc)
 	number = ft_atoi(argv[i]);
 	check_limits(number);
 	stack_a = ft_lstnew(number);
-	if (*argc == 2)
+	if (*argc <= 2)
 		exit (0);
 	if (i == 0)
 		*argc = *argc - 1;

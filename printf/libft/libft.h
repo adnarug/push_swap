@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:01:49 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/09 15:13:07 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/12 14:18:23 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int				ft_strlen(const char *c);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t			ft_strlcat(char *dst, const char *src, size_t dstsize);
 char			*ft_strdup(const char *s1);
-char			*ft_strchr(const char *s, int c);
+char			*ft_strchr(char *s, char c);
 char			*ft_strrchr(const char *s, int c);
 void			*ft_memset(void *b, int c, size_t len);
 void			*ft_memmove(void *dst, const void *src, size_t n);
