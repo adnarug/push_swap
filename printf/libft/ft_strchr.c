@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 09:28:50 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/12 14:24:34 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:08:38 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strchr(char *s, char c)
 
 	z = c;
 	p_c = s;
-	while (*p_c != '\0' || z != '\0')
+	while (*p_c != '\0' || z == '\0')
 	{
 		if (*p_c == z)
 			return ((char *)p_c);
@@ -27,12 +27,3 @@ char	*ft_strchr(char *s, char c)
 	}
 	return (NULL);
 }
-
-// int main()
-// {
-// 	if (ft_strchr("	+502+", '	') != NULL)
-// 		write( 1, "1", 1);
-// 	else
-// 		write (1, "0", 1);
-// 	return(0);
-// }

@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/12 17:04:54 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:26:05 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 		return (0);
 	a = input_parsing(argv, &argc); 
 	check_for_sorted(&a);
-	ft_print_lst_a(a);
+	// ft_print_lst_a(a);
 	presorting_check(&a);
 	presorting(&a);
 	stacks_sorting(&a, &b);

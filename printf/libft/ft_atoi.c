@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 13:52:34 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/10 18:29:34 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:22:53 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ long int	ft_atoi(const char *str)
 	{
 		result_integer = result_integer * 10 + str[i] - '0';
 		i++;
+	}
+	if(ft_isnum(str[i]) == 0 && str[i] != '\0' && str[i] != '\t' && str[i] != ' ')
+	{
+		write (2, "Error\n", 6);
+		exit(0);
 	}
 	return (result_integer * sign);
 }
