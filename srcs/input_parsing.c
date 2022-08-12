@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 17:30:21 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/12 17:27:42 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:33:51 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ t_list	*input_parsing(char **argv,int *argc)
 	
 	i = 1;
 	stack_a = NULL;
+	if (argv[1] == NULL || *argv[1] == '\0')
+		exit(0);
 	argv = typeof_input(argv, argc, &i);
 	number = ft_atoi(argv[i]);
 	check_limits(number);
