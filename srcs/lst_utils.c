@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/10 11:20:25 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:57:09 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,13 +158,33 @@ void	move_to_b(t_list **a, t_list **b)
 	}
 }
 
-void	sort_triple(t_list **a)
+void	sort_triple(t_list **stack)
 {
-	while(check_raw_sorted(a) == 0)
+{
+	int	n_1;
+	int	n_2;
+	int	n_3;
+
+	n_1 = (*stack)->content;
+	n_2 = (*stack)->next->content;
+	n_3 = (*stack)->next->next->content;
+	if ((n_1 > n_2) && (n_1 < n_3) && (n_2 < n_3))
+		sa(*stack);
+	else if ((n_1 > n_2) && (n_1 > n_3) && (n_2 > n_3))
 	{
-		rra(a);
-		sa(*a);
+		sa(*stack);
+		rra(stack);
 	}
+	else if ((n_1 > n_2) && (n_1 > n_3) && (n_2 < n_3))
+		ra(stack);
+	else if ((n_1 < n_2) && (n_1 < n_3) && (n_2 > n_3))
+	{
+		sa(*stack);
+		ra(stack);
+	}
+	else if ((n_1 < n_2) && (n_1 > n_3) && (n_2 > n_3))
+		rra(stack);
+}
 }
 
 void give_index(t_list **stack)

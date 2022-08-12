@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 12:16:30 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/10 15:44:07 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/12 19:51:38 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,63 @@ t_list *target_spot_in_a(t_list **a, t_list *node)
 		temp = temp->next;
 	}
 	return(best_match);
+}
+
+t_list *target_spot_in_a_for_5(t_list **a, t_list *node)
+{
+	t_list 	*temp;
+	t_list	*best_match;
+	int		best_diff;
+	int		actual_diff;
+
+	temp = *a;
+	best_diff = 0;
+	actual_diff = 0;
+	while (temp->position < node->position)
+		temp = temp->next;
+	best_diff = temp->position - node->position;
+	best_match = temp;
+	while(temp != NULL)
+	{
+		actual_diff = temp->position - node->position;
+		if(actual_diff < best_diff && actual_diff > 0)
+		{
+			best_match = temp;
+			best_diff = actual_diff;
+		}
+		temp = temp->next;
+	}
+	return(best_match);
+}
+
+// Finding the best element (by position) to be put on top of stack a, before pushing from b.
+t_list *target_spot_in_b(t_list **b, t_list *node)
+{
+	t_list 	*temp;
+	t_list	*best_match;
+	int		best_diff;
+	int		actual_diff;
+
+	temp = *b;
+	best_diff = 0;
+	actual_diff = 0;
+	if (ft_lstsize(temp) == 1)
+		return (temp);
+	while (temp->position > node->position)
+		temp = temp->next;
+	best_diff = temp->position - node->position;
+	best_match = temp;
+	while(temp != NULL)
+	{
+		actual_diff = temp->position - node->position;
+		if(actual_diff < best_diff && actual_diff > 0)
+		{
+			best_match = temp;
+			best_diff = actual_diff;
+		}
+		temp = temp->next;
+	}
+	return(best_match); 
 }
 // Scoring elements in b on how many instr in both stack are needed to place it correctly
 void	scoring(t_list **a, t_list **b)

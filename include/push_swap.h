@@ -42,7 +42,11 @@ void	rotating_a(t_list **a, t_list *target_spot);
 void	final_sort(t_list **a);
 void	presorting(t_list **a);
 void	stacks_sorting(t_list **a, t_list **b);
-void    free_stacks(t_list **a, t_list **b);
+void	free_stacks(t_list **a, t_list **b);
+void	sorting_stack_of_5(t_list **a, t_list **b);
+void	move_process_for_5(t_list **a, t_list **b);
+t_list	*target_spot_in_b(t_list **a, t_list *node);
+void	move_process_for_5_back(t_list **a, t_list **b);
 //Instructions
 void	sa(t_list *a);
 void	pa(t_list **a, t_list **b);

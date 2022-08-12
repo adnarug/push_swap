@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 15:49:27 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/09 18:17:45 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/12 19:56:17 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,3 +119,42 @@ void	move_process(t_list **a, t_list **b)
 	rotating_a(a, target_spot);
 	pa(a, b);	
 }
+
+void	move_process_for_5(t_list **a, t_list **b)
+{
+	t_list	*to_move;
+	t_list	*target_spot;
+
+	// to_move = search_cheapest_move(a);
+	target_spot = target_spot_in_b(b, a);
+	// printf("BEFORE MOVE \n NODE  : %d position: %d score: %d \n TARGET: %d position: %d\n\n",to_move->content, to_move->position, to_move->total_score, target_spot->content, target_spot->position);	
+	// ft_print_lst_b(b);
+	rotating_b(b, target_spot);
+	// rotating_a(a, to_move);
+	pb(a, b);	
+}
+
+void	move_process_for_5_back(t_list **a, t_list **b)
+{
+	t_list	*to_move;
+	t_list	*target_spot;
+
+	to_move = search_cheapest_move(b);
+	// printf("BEFORE MOVE \n NODE  : %d position: %d score: %d \n TARGET: %d position: %d\n\n",to_move->content, to_move->position, to_move->total_score, target_spot->content, target_spot->position);	
+	// ft_print_lst_b(b);
+	rotating_b(b, to_move);
+	pa(a, b);	
+}
+
+// void	move_process_median(t_list **b, t_list *median)
+// {
+// 	t_list	*to_move;
+// 	t_list	*target_spot;
+
+// 	// target_spot = target_spot_in_a(a, to_move);
+// 	// // printf("BEFORE MOVE \n NODE  : %d position: %d score: %d \n TARGET: %d position: %d\n\n",to_move->content, to_move->position, to_move->total_score, target_spot->content, target_spot->position);	
+// 	// // ft_print_lst_b(b);
+// 	// // rotating_b(b, to_move);
+// 	rotating_a(a, median);
+// 	pa(a, b);	
+// }
