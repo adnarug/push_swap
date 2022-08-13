@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:50:34 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/10 11:21:03 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/13 13:25:31 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,20 @@ void	sb(t_list *b)
 {
 	if (b->next == NULL || b == NULL)
 		return;
-	int first;
-	int second;
+	t_list *first;
+	t_list *second;
+	t_list swap;
 	
-	first = b->content;
-	second = b->next->content;
-	first = first + second;
-	second = first - second;
-	first = first - second;
-	b->content = first;
-	b->next->content = second;
+	first = b;
+	second = b->next;
+	swap.content = first->content;
+	swap.position = first->position;
+	first->content = second->content;
+	first->position = second->position;
+	second->content = swap.content;
+	second->position = swap.position;
+	first->index = 0;
+	second->index = 1;
 	write (1, "sb\n", 3);
 }
 
@@ -60,7 +64,7 @@ void	ss(t_list *a, t_list *b)
 	write (1, "ss\n", 3);
 }
 
-//Push a - take the first element on the top of stack b and put it on top a*/
+/* Push a - take the first element on the top of stack b and put it on top a*/
 void	pa(t_list **a, t_list **b)
 {
 	if(b == NULL)

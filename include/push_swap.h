@@ -47,6 +47,7 @@ void	sorting_stack_of_5(t_list **a, t_list **b);
 void	move_process_for_5(t_list **a, t_list **b);
 t_list	*target_spot_in_b(t_list **a, t_list *node);
 void	move_process_for_5_back(t_list **a, t_list **b);
+void move_from_a_to_b(t_list **a, t_list **b, t_list *element);
 //Instructions
 void	sa(t_list *a);
 void	pa(t_list **a, t_list **b);

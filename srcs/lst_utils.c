@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/12 17:57:09 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/13 13:49:31 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,9 @@ void	lst_indexing(t_list **a, t_list *presorted_a)
 			head_presorted_a = head_presorted_a->next;
 	}
 }
-
+/* Stack that can be rotated without pushing e.g 34512.
+	Find min and then check that until null is increasing
+	*/
 int	check_raw_sorted(t_list **a)
 {
 	t_list *temp;
@@ -114,11 +116,11 @@ int	check_raw_sorted(t_list **a)
 		else
 			return (0);
 	}
-	if(temp->next == search_min(a))
-	{
-		if (temp->content < min->content)
-			return (0);
-	}
+	// if(temp->next == search_min(a))
+	// {
+	if (temp->content < min->content)
+		return (0);
+	// }
 	min = search_min(a);
 	while (temp != min && temp->next != min)
 	{

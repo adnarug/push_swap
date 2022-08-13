@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 12:16:30 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/12 19:51:38 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/13 12:10:55 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,11 @@ t_list *target_spot_in_a(t_list **a, t_list *node)
 	temp = *a;
 	best_diff = 0;
 	actual_diff = 0;
-	while (temp->position < node->position)
-		temp = temp->next;
+	if (ft_lstsize(temp) > 1)
+	{
+		while(temp->position < node->position)
+			temp = temp->next;
+	}
 	best_diff = temp->position - node->position;
 	best_match = temp;
 	while(temp != NULL)
