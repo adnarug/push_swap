@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 12:16:30 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/13 12:10:55 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/13 17:17:44 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static int	distance_to_move(t_list **stack, t_list *node)
 	// printf("Total is: %d \n", total);
 	distance_to_bottom = total - (index_of_node + 1);
 	distance_to_top = index_of_node;
+	node->score_ra = distance_to_top;
+	node->score_rra = distance_to_bottom + 1;//to move to the top of the stack + pb
 	if(distance_to_bottom < distance_to_top)
 		return(distance_to_bottom + 1);//to move to the top of the stack
 	else
@@ -120,6 +122,7 @@ t_list *target_spot_in_b(t_list **b, t_list *node)
 	}
 	return(best_match); 
 }
+
 // Scoring elements in b on how many instr in both stack are needed to place it correctly
 void	scoring(t_list **a, t_list **b)
 {
@@ -138,6 +141,8 @@ void	scoring(t_list **a, t_list **b)
 		target_spot = target_spot_in_a(a, temp_b);
 		score_a = distance_to_move(a, target_spot);
 		temp_b->score = score_a + score_b;
+		temp_b->score_ra += 1;
+		temp_b->score_rra += 1; 
 		temp_b = temp_b->next;
 	}
 	return ;

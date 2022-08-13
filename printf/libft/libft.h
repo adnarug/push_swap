@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:01:49 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/12 14:18:23 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/13 16:53:42 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ typedef struct s_list
 	int				position;
 	int				index;
 	int				score;
+	int				score_ra;
+	int				score_rra;
+	int				score_rrb;
+	int				score_rb;
+	int				count_rrr;
+	int				count_rr;
 	struct s_list	*next;
 }	t_list;
 int				ft_tolower(int c);

@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 17:30:21 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/12 17:33:51 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/13 18:49:49 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,17 @@ static char	**typeof_input(char **new_argv, int *argc, int *i)
 
 	counter = 0;
 	iter = 0;
+		if (new_argv[0] == NULL || *new_argv[0] == '\0')
+		{			
+			write (2, "Error\n", 6);
+			exit(1);
+		}
 	if(ft_strchr(new_argv[1], ' ') != NULL || ft_strchr(new_argv[1], '	') != NULL)
 	{
 		if (*argc != 2)
 		{
 			write (2, "Error\n", 6);
-			exit(0);
+			exit(1);
 		}
 		new_argv = ft_split(new_argv[1], ' ', &counter);
 		*argc = counter;

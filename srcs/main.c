@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/13 13:49:46 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/13 19:00:10 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 	// ft_print_lst_a(a);
 	stacks_sorting(&a, &b);
 	// ft_print_lst_a(a);
+	// ft_print_lst_b(b);
 	ft_lst_free(a);
 	a = NULL;
 	ft_lst_free(b);

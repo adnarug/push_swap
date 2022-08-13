@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 15:49:27 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/13 11:20:52 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/13 17:46:20 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,15 +106,81 @@ void	rotating_a(t_list **a, t_list *target_spot)
 	}
 }
 
+
+
+static int checking_r_rr(t_list *to_move, t_list *target_spot)
+{
+	int rr;
+	int	rrr;
+
+	rr = 0;
+	rrr = 0;
+	to_move->count_rr = 0;
+	to_move->count_rrr = 0;
+	target_spot->count_rr = 0;
+	target_spot->count_rrr = 0 ;
+	if (to_move == NULL || target_spot == NULL)
+		return (0);
+	if(to_move->score_ra <= to_move->score_rra && target_spot->score_ra <= target_spot->score_rra)
+	{
+		if(to_move->score_ra >= target_spot->score_ra)
+			to_move->count_rr = target_spot->score_ra;
+		else
+			to_move->count_rr = to_move->score_ra;
+		target_spot->count_rr = to_move->count_rr;
+		return (1);
+	}
+	if(to_move->score_ra > to_move->score_rra && target_spot->score_ra > target_spot->score_rra)
+	{
+		if(to_move->score_rra >= target_spot->score_rra)
+			to_move->count_rrr = target_spot->score_rra;
+		else
+			to_move->count_rrr = to_move->score_rra;
+		target_spot->count_rrr = to_move->count_rrr;
+		return (1);
+	}
+	return (0);
+}
+
+static void counting_rrr(t_list *to_move, t_list *target_spot)
+{
+	if (to_move == NULL || target_spot == NULL)
+		return ;
+	checking_r_rr(to_move, target_spot);
+		// printf ("\nPotential for savings: rr: %d rrr:%d\n", to_move->count_rr, to_move->count_rrr);
+
+}
+
 void	move_process(t_list **a, t_list **b)
 {
 	t_list	*to_move;
 	t_list	*target_spot;
 
+
 	to_move = search_cheapest_move(b);
 	target_spot = target_spot_in_a(a, to_move);
+	// printf ("\n\nElement to be moved: %d, ras: %d rras:%d SCORE: %d \n", to_move->content, to_move->score_ra, to_move->score_rra, to_move->score);
+	// printf ("Target spot: %d, ras: %d rras:%d \n", target_spot->content, target_spot->score_ra, target_spot->score_rra);
+	// printf ("Score for the element: %d\n\n", to_move->score);
+	counting_rrr(to_move, target_spot);
 	// printf("BEFORE MOVE \n NODE  : %d position: %d score: %d \n TARGET: %d position: %d\n\n",to_move->content, to_move->position, to_move->total_score, target_spot->content, target_spot->position);	
 	// ft_print_lst_b(b);
+	if (to_move->count_rr > 0)
+	{
+		while (to_move->count_rr != 0 )
+		{
+			rr(a, b);
+			to_move->count_rr--;
+		}
+	}
+	if (to_move->count_rrr > 0)
+	{
+		while (to_move->count_rrr != 0 )
+		{
+			rrr(a, b);
+			to_move->count_rrr--;
+		}
+	}
 	rotating_b(b, to_move);
 	rotating_a(a, target_spot);
 	pa(a, b);	
