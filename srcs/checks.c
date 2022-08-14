@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 13:56:18 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 20:07:48 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/14 20:12:09 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,3 @@ void	check_limits(long int number)
 		exit (0);
 	}
 }
-

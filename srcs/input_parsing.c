@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 17:30:21 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 20:09:55 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/14 20:21:22 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,12 @@ static char	**typeof_input(char **new_argv, int *argc, int *i)
 
 	counter = 0;
 	iter = 0;
-		if (new_argv[0] == NULL || *new_argv[0] == '\0')
-		{			
-			write (2, "Error\n", 6);
-			exit(1);
-		}
+	if (new_argv[0] == NULL || *new_argv[0] == '\0')
+		error_message(1);
 	if(ft_strchr(new_argv[1], ' ') != NULL || ft_strchr(new_argv[1], '	') != NULL)
 	{
 		if (*argc != 2)
-		{
-			write (2, "Error\n", 6);
-			exit(1);
-		}
+			error_message(1);
 		new_argv = ft_split(new_argv[1], ' ', &counter);
 		*argc = counter;
 		*i = 0;
@@ -51,20 +45,16 @@ static void	argv_to_list(char **argv, int argc, t_list *a, int start)
 	int				*arrayfor_check;
 	
 	number = 0;
-	counter = 1;
+	counter = 0; // will it work?
 	first = a;
-
 	arrayfor_check = malloc((argc) * sizeof(int));
 	if (arrayfor_check == NULL)
 		return ;
 	arrayfor_check[0] = first->content;
-	while(start < argc)
+	while(start < argc && counter++) //will it work?
 	{
 		if (argv[start] ==  NULL)
-		{
-			write(2, "Error\n", 6);
-			exit(1);
-		}
+			error_message(1);
 		checkis_digit(argv[start]);
 		number = ft_atoi(argv[start]);
 		check_limits(number);
@@ -72,7 +62,6 @@ static void	argv_to_list(char **argv, int argc, t_list *a, int start)
 		arrayfor_check[counter] = number;
 		first = ft_lstadd_back(&first, ft_lstnew(number));
 		start++;
-		counter++;
 	}
 	free(arrayfor_check);
 	arrayfor_check = NULL;
@@ -87,10 +76,7 @@ t_list	*input_parsing(char **argv,int *argc)
 	i = 1;
 	stack_a = NULL;
 	if (argv[1] == NULL || *argv[1] == '\0')
-	{
-		write(2, "Error\n", 6);
-		exit(1);
-	}
+		error_message(1);
 	argv = typeof_input(argv, argc, &i);
 	number = ft_atoi(argv[i]);
 	check_limits(number);
@@ -103,4 +89,13 @@ t_list	*input_parsing(char **argv,int *argc)
 	argv_to_list(argv, *argc, stack_a, i);
 	give_index(&stack_a);
 	return (stack_a);
+}
+
+void	error_message(int error)
+{
+	if (error == 1)
+	{
+		write(2, "Error\n", 6);
+		exit (1);
+	}
 }
