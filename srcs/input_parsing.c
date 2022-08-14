@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 17:30:21 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/13 18:49:49 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/14 18:04:46 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	check_repeats(int *arrayfor_check, int number, int counter)
 		if (arrayfor_check[i] == number)
 		{
 			write (2, "Error\n", 6);
-
 			exit (1);
 		}
 		i++;
@@ -107,6 +106,11 @@ static void ft_argv2list(char **argv, int argc, t_list *a, int start)
 	arrayfor_check[0] = first->content;
 	while(start < argc)
 	{
+		if (argv[start] ==  NULL)
+		{
+			write(2, "Error\n", 6);
+			exit(1);
+		}
 		checkis_digit(argv[start]);
 		number = ft_atoi(argv[start]);
 		check_limits(number);
@@ -129,7 +133,10 @@ t_list	*input_parsing(char **argv,int *argc)
 	i = 1;
 	stack_a = NULL;
 	if (argv[1] == NULL || *argv[1] == '\0')
-		exit(0);
+	{
+		write(2, "Error\n", 6);
+		exit(1);
+	}
 	argv = typeof_input(argv, argc, &i);
 	number = ft_atoi(argv[i]);
 	check_limits(number);

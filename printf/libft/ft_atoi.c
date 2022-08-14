@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 13:52:34 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/12 17:22:53 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/14 15:57:40 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,24 @@ long int	ft_atoi(const char *str)
 	int				i;
 	long int		result_integer;
 	int				sign;
+	int				flag_for_sign;
 
 	i = 0;
 	result_integer = 0;
+	flag_for_sign = 0;
 	sign = 1;
 	i = ft_white_space(str);
 	if (str[i] == '-')
 		sign *= -1;
 	if (str[i] == '-' || str[i] == '+')
+	{
 		i++;
+		flag_for_sign = 1;
+	}
 	if (ft_isnum(str[i]) == 0)
 	{
 		write (2, "Error\n", 6);
-		exit(0);
+		exit(1);
 	}
 	while (ft_isnum(str[i]) == 1)
 	{
@@ -56,7 +61,20 @@ long int	ft_atoi(const char *str)
 	if(ft_isnum(str[i]) == 0 && str[i] != '\0' && str[i] != '\t' && str[i] != ' ')
 	{
 		write (2, "Error\n", 6);
-		exit(0);
+		exit(1);
 	}
+	// if (result_integer == 0 && flag_for_sign == 1)
+	// {
+	// 	write (2, "Error\n", 6);
+	// 	exit(1);
+	// }
 	return (result_integer * sign);
 }
+
+// int main()
+// {
+// 	printf("Original atoi: %ld\n", atoi("1 """));
+// 	printf("My atoi: %ld\n", ft_atoi("1 """));
+
+// 	return(0);
+// }

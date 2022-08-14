@@ -49,6 +49,13 @@ t_list	*target_spot_in_b(t_list **a, t_list *node);
 void	move_process_for_5_back(t_list **a, t_list **b);
 void move_from_a_to_b(t_list **a, t_list **b, t_list *element);
 t_list	*search_by_postion(t_list *stack, int position);
+//Presorting utils
+t_list	*lst_swap(t_list **first, t_list **second);
+t_list *scan_left(t_list **a, t_list *mid_point);
+t_list	*search_midpoint(t_list **a);
+t_list *scan_right(t_list *mid_point);
+void	lst_copy_content(t_list **src, t_list **dst);
+t_list	*ft_lst_duplicate(t_list **a);
 //Instructions
 void	sa(t_list *a);
 void	pa(t_list **a, t_list **b);

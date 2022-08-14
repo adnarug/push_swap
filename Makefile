@@ -6,7 +6,7 @@
 #    By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 15:33:32 by pguranda          #+#    #+#              #
-#    Updated: 2022/08/14 14:19:27 by pguranda         ###   ########.fr        #
+#    Updated: 2022/08/14 18:38:09 by pguranda         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,15 @@ GREEN = \033[0;92m
 
 SRC_FILES	=	lst_utils\
 				instructions\
-				cases\
+				presorting\
+				presorting_utils\
 				stats\
 				score\
 				move_process\
 				input_parsing\
 				checks\
 				sorting\
+				duplicate_lst\
 				main
 				
 SRC		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))

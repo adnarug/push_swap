@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 17:41:17 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 14:26:09 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/14 16:09:47 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ t_list *search_max(t_list **a)
 	return(max);
 }
 
-//Find and return the median value in a stack
+//Find and return the median value by position
 t_list *search_median(t_list **a)
 {
 	t_list *temp;
 	
 	temp = *a;
-	while (temp->position != (ft_lstsize(*a))/2)
+	while ((temp->position != (ft_lstsize(*a)) / 2) && temp != NULL)
 		temp = temp->next;
 	// printf("Median is %d \n", temp->content);
 	return(temp);	
