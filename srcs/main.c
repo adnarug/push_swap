@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 16:12:39 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/14 18:51:58 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	if(argc < 2)
+	if (argc < 2)
 		return (0);
-	a = input_parsing(argv, &argc); 
+	a = input_parsing(argv, &argc);
 	presorting_check(&a);
 	presorting(&a);
 	check_for_sorted(&a);//check for raw sorted also

@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 13:55:23 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 14:08:16 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/14 20:06:20 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	final_sort(t_list **a)
 /*Assigning a position (i.e. place in the sorted stack) for each node,
 by creating a duplicate list, sorting it with quicksort and copying the index
 as position (lst_indexing) for stack_a*/
-//TODO: Do I need to presort two times?
 void	presorting(t_list **a)
 {
 	t_list	*temp_a;

@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:08:29 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 18:37:52 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/14 18:42:08 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,11 @@ t_list	*scan_right(t_list *mid_point)
 		temp = temp->next;
 	}
 	return (NULL);
+}
+
+/*Moving the desired element from stack_a to stack_b*/
+void	move_from_a_to_b(t_list **a, t_list **b, t_list *element)
+{
+	rotating_a(a, element);
+	pb(a, b);
 }

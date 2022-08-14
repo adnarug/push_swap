@@ -6,11 +6,12 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 16:15:18 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 18:34:06 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/14 19:41:20 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
 /*Check if the sorting is done i.e. no grater to the left and 
 smaller to the right of pivot*/
 static int	end_sorting(t_list **left_scan, t_list **right_scan, t_list **pivot)
@@ -67,4 +68,26 @@ t_list	*sorting(t_list **a)
 	min = search_min(&presorted);
 	final_sorted = quicksort(&presorted, presorted, min);
 	return (final_sorted);
+}
+
+/*Giving each element in stack_a a position value 
+(i.e. place in a sorted stack)*/
+void	lst_indexing(t_list **a, t_list *presorted_a)
+{
+	t_list	*head_a;
+	t_list	*head_presorted_a;
+
+	head_a = *a;
+	head_presorted_a = presorted_a;
+	while (head_a != NULL)
+	{
+		if (head_a->content == head_presorted_a->content)
+		{
+			head_a->position = head_presorted_a->index;
+			head_a = head_a->next;
+			head_presorted_a = presorted_a;
+		}
+		else
+			head_presorted_a = head_presorted_a->next;
+	}
 }
