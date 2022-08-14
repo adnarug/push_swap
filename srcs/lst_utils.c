@@ -6,12 +6,12 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/13 13:49:31 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/14 14:23:16 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
+/*Freeing the stack and all the elements in it.*/
 void	ft_lst_free(t_list *lst)
 {
 	t_list	*pointer;
@@ -48,6 +48,21 @@ void	ft_print_lst_b(t_list *b)
 	}
 }
 
+/*Returning the node with a given position (i.e. its place in sorted stack)*/
+t_list	*search_by_postion(t_list *stack, int position)
+{
+	t_list	*temp;
+
+	temp = stack;
+	while (temp != NULL)
+	{
+		if (temp->position == position)
+			return (temp);
+		temp = temp->next;
+	}
+	return (NULL);
+}
+
 // void ft_default_struct(t_list **b, int total_count)
 // {
 
@@ -78,8 +93,8 @@ void	ft_print_lst_b(t_list *b)
 // 	*lst = head;
 // }
 
-
-
+/*Giving each element in stack_a a position value 
+(i.e. place in a sorted stack)*/
 void	lst_indexing(t_list **a, t_list *presorted_a)
 {
 	t_list *head_a;
@@ -99,9 +114,9 @@ void	lst_indexing(t_list **a, t_list *presorted_a)
 			head_presorted_a = head_presorted_a->next;
 	}
 }
+
 /* Stack that can be rotated without pushing e.g 34512.
-	Find min and then check that until null is increasing
-	*/
+	Find min and then check that until null is increasing*/
 int	check_raw_sorted(t_list **a)
 {
 	t_list *temp;
@@ -132,6 +147,7 @@ int	check_raw_sorted(t_list **a)
 	return(1);
 }
 
+/*Transfering everything except min, max, med from stack_a to stack_b*/
 void	move_to_b(t_list **a, t_list **b)
 {
 	t_list	*min;
@@ -160,35 +176,7 @@ void	move_to_b(t_list **a, t_list **b)
 	}
 }
 
-void	sort_triple(t_list **stack)
-{
-{
-	int	n_1;
-	int	n_2;
-	int	n_3;
-
-	n_1 = (*stack)->content;
-	n_2 = (*stack)->next->content;
-	n_3 = (*stack)->next->next->content;
-	if ((n_1 > n_2) && (n_1 < n_3) && (n_2 < n_3))
-		sa(*stack);
-	else if ((n_1 > n_2) && (n_1 > n_3) && (n_2 > n_3))
-	{
-		sa(*stack);
-		rra(stack);
-	}
-	else if ((n_1 > n_2) && (n_1 > n_3) && (n_2 < n_3))
-		ra(stack);
-	else if ((n_1 < n_2) && (n_1 < n_3) && (n_2 > n_3))
-	{
-		sa(*stack);
-		ra(stack);
-	}
-	else if ((n_1 < n_2) && (n_1 > n_3) && (n_2 > n_3))
-		rra(stack);
-}
-}
-
+/*Indexing elements in a stack*/
 void give_index(t_list **stack)
 {
 	t_list *temp;

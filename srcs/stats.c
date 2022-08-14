@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 17:41:17 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/10 10:14:44 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/14 14:26:09 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_list	*search_min(t_list **a)
 		else
 			temp = temp->next;
 	}
-	
 	return(min);
 }
 

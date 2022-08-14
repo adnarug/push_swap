@@ -6,12 +6,14 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 15:49:27 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/13 17:46:20 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/14 14:20:55 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+/*Finding the cheapest element in stack_b to move
+by the score (incl. rotations in stack_a and stack_b)*/
 static t_list	*search_cheapest_move(t_list **b)
 {
 	t_list	*min;
@@ -29,6 +31,8 @@ static t_list	*search_cheapest_move(t_list **b)
 	return(min);
 }
 
+/*Bringing the desired element in stack_b on top
+with the least instructons. Not doing the push.*/
 static void	rotating_b(t_list **b, t_list *node_to_move)
 {
 	int		distance_to_bottom;
@@ -67,6 +71,8 @@ static void	rotating_b(t_list **b, t_list *node_to_move)
 	}
 }
 
+/*Bringing the desired element in stack_a on top
+with the least instructons.*/
 void	rotating_a(t_list **a, t_list *target_spot)
 {
 	int		distance_to_bottom;
@@ -106,21 +112,16 @@ void	rotating_a(t_list **a, t_list *target_spot)
 	}
 }
 
-
-
-static int checking_r_rr(t_list *to_move, t_list *target_spot)
+/*Identifying instances for rr and rrr. Where in stack_a and stack_b
+ at the same time either ra or rra used. NB: ra == rb, rra == rrb */
+static int finding_rr_rrr(t_list *to_move, t_list *target_spot)
 {
-	int rr;
-	int	rrr;
-
-	rr = 0;
-	rrr = 0;
+	if (to_move == NULL || target_spot == NULL)
+		return (0);
 	to_move->count_rr = 0;
 	to_move->count_rrr = 0;
 	target_spot->count_rr = 0;
 	target_spot->count_rrr = 0 ;
-	if (to_move == NULL || target_spot == NULL)
-		return (0);
 	if(to_move->score_ra <= to_move->score_rra && target_spot->score_ra <= target_spot->score_rra)
 	{
 		if(to_move->score_ra >= target_spot->score_ra)
@@ -142,15 +143,8 @@ static int checking_r_rr(t_list *to_move, t_list *target_spot)
 	return (0);
 }
 
-static void counting_rrr(t_list *to_move, t_list *target_spot)
-{
-	if (to_move == NULL || target_spot == NULL)
-		return ;
-	checking_r_rr(to_move, target_spot);
-		// printf ("\nPotential for savings: rr: %d rrr:%d\n", to_move->count_rr, to_move->count_rrr);
-
-}
-
+/*The main push process, move the right element from stack_b to the right place
+in stack_a*/
 void	move_process(t_list **a, t_list **b)
 {
 	t_list	*to_move;
@@ -162,7 +156,7 @@ void	move_process(t_list **a, t_list **b)
 	// printf ("\n\nElement to be moved: %d, ras: %d rras:%d SCORE: %d \n", to_move->content, to_move->score_ra, to_move->score_rra, to_move->score);
 	// printf ("Target spot: %d, ras: %d rras:%d \n", target_spot->content, target_spot->score_ra, target_spot->score_rra);
 	// printf ("Score for the element: %d\n\n", to_move->score);
-	counting_rrr(to_move, target_spot);
+	finding_rr_rrr(to_move, target_spot);
 	// printf("BEFORE MOVE \n NODE  : %d position: %d score: %d \n TARGET: %d position: %d\n\n",to_move->content, to_move->position, to_move->total_score, target_spot->content, target_spot->position);	
 	// ft_print_lst_b(b);
 	if (to_move->count_rr > 0)
@@ -185,7 +179,7 @@ void	move_process(t_list **a, t_list **b)
 	rotating_a(a, target_spot);
 	pa(a, b);	
 }
-
+/*Moving the desired element from stack_a to stack_b*/
 void move_from_a_to_b(t_list **a, t_list **b, t_list *element)
 {
 	rotating_a(a, element);
