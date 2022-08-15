@@ -6,11 +6,11 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:51:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 19:57:57 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 12:21:09 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 /*Swap the first 2 elements on the top of stack a*/
 void	sa(t_list *a)

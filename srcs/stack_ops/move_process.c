@@ -6,11 +6,11 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 15:49:27 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 19:31:58 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 12:21:55 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 /*Finding the cheapest element in stack_b to move
 by the score (incl. rotations in stack_a and stack_b)*/
@@ -81,4 +81,27 @@ void	move_process(t_list **a, t_list **b)
 	rotating_b(b, to_move);
 	rotating_a(a, target_spot);
 	pa(a, b);
+}
+
+/*Checking a cheapest way to move given node in a given stack
+rra + 1 (to put on top) + 1 (to push) */
+int	distance_to_move(t_list **stack, t_list *node)
+{
+	int		distance_to_bottom;
+	int		distance_to_top;
+	int		index_of_node;
+	int		total;
+	t_list	*temp;
+	
+	temp = *stack;
+	index_of_node = node->index;
+	total = ft_lstlast(*stack)->index + 1;
+	distance_to_bottom = total - (index_of_node + 1);
+	distance_to_top = index_of_node;
+	node->score_ra = distance_to_top;
+	node->score_rra = distance_to_bottom + 1;//to move to the top of the stack + pb
+	if(distance_to_bottom < distance_to_top)
+		return(distance_to_bottom + 1);//to move to the top of the stack
+	else
+		return(distance_to_top);
 }

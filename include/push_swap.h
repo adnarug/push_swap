@@ -9,19 +9,25 @@
 #define MIN_INT -2147483648
 
 //Push_Swap
+//Input parsing - 3 statics
+t_list		*input_parsing(char **argv, int *argc);
+void		error_message(int error);
 //checks - 0 statics
 int		check_raw_sorted(t_list **a);
 int		check_for_sorted(t_list **a);
-t_list	*reassign_front_node(t_list **list);
-t_list	*reassign_back_node(t_list **list);
+void	check_repeats(int *arrayfor_check, int number, int counter);
+void	checkis_digit(char *s);
+void	check_limits(long int number);
 //Duplicate_lst - 1 statics
 t_list	*ft_lst_duplicate(t_list **a);
-//Lst_uitls - 0 sattics
+//Lst_uitls - 0 sattics TODO:Delete print from lst utils
 void	ft_lst_free(t_list *lst);
 t_list	*search_by_postion(t_list *stack, int position);
 void	move_to_b(t_list **a, t_list **b);
 void	give_index(t_list **stack);
+// void	ft_print_lst_a(t_list *a);
 //Presorting - 2 statics
+void	final_sort(t_list **a);
 t_list	*sorting(t_list **a);
 void	lst_indexing(t_list **a, t_list *presorted_a);
 //Presorting utils - 0 statics
@@ -29,8 +35,7 @@ t_list	*lst_swap(t_list **first, t_list **second);
 t_list	*scan_left(t_list **a, t_list *mid_point);
 t_list	*search_midpoint(t_list **a);
 t_list	*scan_right(t_list *mid_point);
-void	lst_copy_content(t_list **src, t_list **dst);
-t_list	*ft_lst_duplicate(t_list **a);
+void	move_from_a_to_b(t_list **a, t_list **b, t_list *element);
 //Rotating stacks - 2 statics
 void	executing_rrs(t_list **a, t_list **b, t_list *to_move);
 void	rotating_b(t_list **b, t_list *node_to_move);
@@ -39,6 +44,7 @@ void	rotating_a(t_list **a, t_list *target_spot);
 t_list	*search_cheapest_move(t_list **b);
 int		finding_rrs(t_list *to_move, t_list *target);
 void	move_process(t_list **a, t_list **b);
+int		distance_to_move(t_list **stack, t_list *node);
 //Instructions_a
 void	sa(t_list *a);
 void	pa(t_list **a, t_list **b);
@@ -51,5 +57,24 @@ void	pb(t_list **a, t_list **b);
 void	rb(t_list **b);
 void	rrb(t_list **b);
 void	rr(t_list **a, t_list **b);
+//Instructons utils
+t_list	*reassign_front_node(t_list **list);
+t_list	*reassign_back_node(t_list **list);
+void	ss(t_list *a, t_list *b);
+//Sorting
+void	sort_triple(t_list **stack);
+void	sorting_stack_of_5(t_list **a, t_list **b);
+void	stacks_sorting(t_list **a, t_list **b);
+void	presorting(t_list **a);
+//Score
+void	presorting_check(t_list **a);
+void	scoring(t_list **a, t_list **b);
+t_list	*target_spot_in_a(t_list **a, t_list *node);
+// t_list	*target_spot_in_a_for_5(t_list **a, t_list *node);
+// t_list	*target_spot_in_a(t_list **a, t_list *node);
+//Stats
+t_list	*search_min(t_list **a);
+t_list	*search_max(t_list **a);
+t_list	*search_median(t_list **a);
 
 #endif

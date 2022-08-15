@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 09:28:50 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/12 17:08:38 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 14:51:50 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_strchr(char *s, char c)
 {
 	char				z;
-	char			*p_c;
+	char				*p_c;
 
 	z = c;
 	p_c = s;

@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 10:04:33 by pguranda          #+#    #+#             */
-/*   Updated: 2022/07/29 16:07:42 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 14:51:14 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static unsigned int		ft_count_strings(char const *s, char c);
 static int				ft_str_len(char const *s, char c);
 static int				ft_assign(char const *s, char *p_str, char c, int i);
-
 
 char	**ft_split(char const *s, char c, int *counter)
 {
@@ -86,17 +85,3 @@ static int	ft_str_len(char const *s, char c)
 		return (i + 1);
 	return (0);
 }
-
-
-// int main ()
-// {
-// 	char **check;
-// 	int *num;
-
-// 	num = malloc(sizeof(int));
-// 	*num = 0;
-// 	check = ft_split ("Hello World Again!", ' ', num);
-// 	printf ("%d ", *num);
-// 	printf ("%s ", check[1]);
-// 	return (0);
-// }

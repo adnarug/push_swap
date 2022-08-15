@@ -6,12 +6,14 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 17:30:21 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 20:21:22 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 13:32:17 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+/*Checking if line contains spaces or tabs, then split
+reassignign the argv*/
 static char	**typeof_input(char **new_argv, int *argc, int *i)
 {
 	int		counter;
@@ -21,7 +23,8 @@ static char	**typeof_input(char **new_argv, int *argc, int *i)
 	iter = 0;
 	if (new_argv[0] == NULL || *new_argv[0] == '\0')
 		error_message(1);
-	if(ft_strchr(new_argv[1], ' ') != NULL || ft_strchr(new_argv[1], '	') != NULL)
+	if (ft_strchr(new_argv[1], ' ') != NULL \
+		|| ft_strchr(new_argv[1], '	') != NULL)
 	{
 		if (*argc != 2)
 			error_message(1);
@@ -34,16 +37,25 @@ static char	**typeof_input(char **new_argv, int *argc, int *i)
 		checkis_digit(new_argv[iter]);
 		iter++;
 	}
-	return(new_argv);
+	return (new_argv);
 }
 
+/*Checking if int is more than MAX or MIN or repeated*/
+static void	check_limits_repeats(int **arrayfor_check, long int number, int *counter)
+{
+	check_limits(number);
+	if(arrayfor_check != NULL)
+		check_repeats(*arrayfor_check, number, *counter);
+}
+
+/*Converting the final argv into a linked list*/
 static void	argv_to_list(char **argv, int argc, t_list *a, int start)
 {
-	int 			counter;
+	int				counter;
 	t_list			*first;
 	long int		number;
 	int				*arrayfor_check;
-	
+
 	number = 0;
 	counter = 0; // will it work?
 	first = a;
@@ -51,38 +63,37 @@ static void	argv_to_list(char **argv, int argc, t_list *a, int start)
 	if (arrayfor_check == NULL)
 		return ;
 	arrayfor_check[0] = first->content;
-	while(start < argc && counter++) //will it work?
+	while (start < argc) //will it work?
 	{
-		if (argv[start] ==  NULL)
+		if (argv[start] == NULL)
 			error_message(1);
 		checkis_digit(argv[start]);
 		number = ft_atoi(argv[start]);
-		check_limits(number);
-		check_repeats(arrayfor_check, number, counter);
-		arrayfor_check[counter] = number;
+		check_limits_repeats(&arrayfor_check, number, &counter);
 		first = ft_lstadd_back(&first, ft_lstnew(number));
+		arrayfor_check[counter] = number;
 		start++;
+		counter++;
 	}
 	free(arrayfor_check);
 	arrayfor_check = NULL;
 }
 
-t_list	*input_parsing(char **argv,int *argc)
+/*Driver function for the parsing*/
+t_list	*input_parsing(char **argv, int *argc)
 {
 	t_list		*stack_a;
 	int			i;
 	long int	number;
-	
+
 	i = 1;
 	stack_a = NULL;
-	if (argv[1] == NULL || *argv[1] == '\0')
-		error_message(1);
+	if ((argv[1] == NULL || *argv[1] == '\0') && *argc == 2)
+		error_message(0);
 	argv = typeof_input(argv, argc, &i);
 	number = ft_atoi(argv[i]);
-	check_limits(number);
+	check_limits_repeats(NULL, number, 0);
 	stack_a = ft_lstnew(number);
-	// if (*argc <= 2)
-	// 	exit (0);
 	if (i == 0)
 		*argc = *argc - 1;
 	i = i + 1;
@@ -98,4 +109,7 @@ void	error_message(int error)
 		write(2, "Error\n", 6);
 		exit (1);
 	}
+	if (error == 0)
+		exit (0);
+
 }

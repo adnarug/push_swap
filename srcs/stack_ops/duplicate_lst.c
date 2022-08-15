@@ -6,11 +6,11 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 18:37:33 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 20:03:14 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 12:21:51 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 /*Duplicating relevant struct values*/
 static void	lst_copy_content(t_list **src, t_list **dst)

@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 13:52:34 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 15:57:40 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 14:50:44 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,30 @@ static int	ft_isnum(char c)
 	return (0);
 }
 
+static int	get_num(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (s == NULL)
+		return (0);
+	while (ft_isnum(str[i]) == 1)
+	{
+		result_integer = result_integer * 10 + str[i] - '0';
+		i++;
+	}
+	return (result_integer);
+}
+
+void	error_message(int error)
+{
+	if (error == 1)
+	{
+		write(2, "Error\n", 6);
+		exit (1);
+	}
+}
+
 long int	ft_atoi(const char *str)
 {
 	int				i;
@@ -37,7 +61,6 @@ long int	ft_atoi(const char *str)
 	int				flag_for_sign;
 
 	i = 0;
-	result_integer = 0;
 	flag_for_sign = 0;
 	sign = 1;
 	i = ft_white_space(str);
@@ -49,32 +72,12 @@ long int	ft_atoi(const char *str)
 		flag_for_sign = 1;
 	}
 	if (ft_isnum(str[i]) == 0)
-	{
-		write (2, "Error\n", 6);
-		exit(1);
-	}
-	while (ft_isnum(str[i]) == 1)
-	{
-		result_integer = result_integer * 10 + str[i] - '0';
-		i++;
-	}
-	if(ft_isnum(str[i]) == 0 && str[i] != '\0' && str[i] != '\t' && str[i] != ' ')
-	{
-		write (2, "Error\n", 6);
-		exit(1);
-	}
-	// if (result_integer == 0 && flag_for_sign == 1)
-	// {
-	// 	write (2, "Error\n", 6);
-	// 	exit(1);
-	// }
+		error_message(1);
+	result_integer = get_num(&str[i]);
+	if (ft_isnum(str[i]) == 0 && str[i] != '\0' \
+		&& str[i] != '\t' && str[i] != ' ')
+		error_message(1);
+	if (result_integer == 0 && flag_for_sign == 1)
+		error_message(1);
 	return (result_integer * sign);
 }
-
-// int main()
-// {
-// 	printf("Original atoi: %ld\n", atoi("1 """));
-// 	printf("My atoi: %ld\n", ft_atoi("1 """));
-
-// 	return(0);
-// }

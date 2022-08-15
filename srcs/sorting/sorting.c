@@ -6,11 +6,11 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 13:55:23 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 20:06:20 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 12:21:35 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 /*Executing final sort (e.g. 123) on the raw-sorted stack (e.g. 312)*/
 void	final_sort(t_list **a)
@@ -18,8 +18,7 @@ void	final_sort(t_list **a)
 	t_list	*start;
 
 	start = search_min(a);
-	// printf("The final min is: %d", start->content);
-	while(check_for_sorted(a) == 0)
+	while (check_for_sorted(a) == 0)
 		rotating_a(a, start);
 	return ;
 }
@@ -30,25 +29,20 @@ as position (lst_indexing) for stack_a*/
 void	presorting(t_list **a)
 {
 	t_list	*temp_a;
-	
+
 	temp_a = sorting(a);
 	lst_indexing(a, temp_a);
 	ft_lst_free(temp_a);
 	temp_a = NULL;
-	
 }
 
 /*Executing stack sorting algo, moving all except min, max, med to stack_b
 and then returning in the sorted manner*/
 void	stacks_sorting(t_list **a, t_list **b)
 {
-	// printf("Before indexing\n");
-	// ft_print_lst_a(*a);
-	// ft_print_lst_b(*b);
-	// printf("After indexing\n");
 	if (ft_lstsize(*a) == 5)
 	{
-		if(check_raw_sorted(a) == 1)
+		if (check_raw_sorted(a) == 1)
 		{
 			final_sort(a);
 			return ;
@@ -62,8 +56,6 @@ void	stacks_sorting(t_list **a, t_list **b)
 	{
 		scoring(a, b);
 		move_process(a, b);
-		// ft_print_lst_a(*a);
-		// ft_print_lst_b(*b);
 	}
 	final_sort(a);
 }
@@ -72,31 +64,22 @@ void	stacks_sorting(t_list **a, t_list **b)
 returning in the correct place*/
 void	sorting_stack_of_5(t_list **a, t_list **b)
 {
-	t_list *first;
-	t_list *second;
-	// t_list *third;
-	// t_list *fourth;
-	// t_list *fifth;
+	t_list	*first;
+	t_list	*second;
 
 	first = search_by_postion(*a, 0);
 	second = search_by_postion(*a, 1);
-	// third = search_by_postion(*a, 2);
-	// fourth = search_by_postion(*a, 3);
-	// fifth = search_by_postion(*a, 4);
 	move_from_a_to_b(a, b, second);
 	move_from_a_to_b(a, b, first);
 	sort_triple(a);
-	// ft_print_lst_a(*a);
-	// ft_print_lst_b(*b);
-	if((*b)->position < (*b)->next->position)
+	if ((*b)->position < (*b)->next->position)
 		sb(*b);
-	// ft_print_lst_b(*b);
 	pa(a, b);
 	pa(a, b);
 }
+
 /*Sorting a stack with 3 elements*/
 void	sort_triple(t_list **stack)
-{
 {
 	int	n_1;
 	int	n_2;
@@ -121,5 +104,4 @@ void	sort_triple(t_list **stack)
 	}
 	else if ((n_1 < n_2) && (n_1 > n_3) && (n_2 > n_3))
 		rra(stack);
-}
 }

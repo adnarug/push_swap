@@ -6,62 +6,60 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:20:44 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 19:27:43 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 12:33:01 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
-static void	moving_to_a_top(t_list **a, t_list **to_move, \
-							int distance_to_bottom, int distance_to_top)
+static void	moving_to_a_top(t_list **a, int to_bottom, int to_top)
 {
-	if (distance_to_bottom == 0)
+	if (to_bottom == 0)
 	{
 		rra(a);
 		return ;
 	}
-	if (distance_to_bottom < distance_to_top)
+	if (to_bottom < to_top)
 	{
-		while (distance_to_bottom != 0)
+		while (to_bottom != 0)
 		{
 			rra(a);
-			distance_to_bottom--;
+			to_bottom--;
 		}
 		rra(a);
 	}
 	else
 	{
-		while (distance_to_top != 0)
+		while (to_top != 0)
 		{
 			ra(a);
-			distance_to_top--;
+			to_top--;
 		}
 	}
 }
 
-static void	moving_to_b_top(t_list **b, t_list **to_move, \
-							int distance_to_bottom, int distance_to_top)
+static void	moving_to_b_top(t_list **b, int to_bottom, int to_top)
 {
-	if (distance_to_bottom == 0)
+	if (to_bottom == 0)
 	{
 		rrb(b);
 		return ;
 	}
-	if (distance_to_bottom < distance_to_top)
+	if (to_bottom < to_top)
 	{
-		while (distance_to_bottom != 0)
+		while (to_bottom != 0)
 		{
 			rrb(b);
-			distance_to_bottom--;
+			to_bottom--;
 		}
 		rrb(b);
 	}
 	else
 	{
-		while (distance_to_top != 0)
+		while (to_top != 0)
 		{
 			rb(b);
-			distance_to_top--;
+			to_top--;
 		}
 	}
 }
@@ -101,7 +99,7 @@ void	rotating_b(t_list **b, t_list *node_to_move)
 	total = ft_lstsize(*b);
 	distance_to_bottom = total - (index_of_node + 1);
 	distance_to_top = index_of_node;
-	moving_to_b_top(b, node_to_move, distance_to_bottom, distance_to_top);
+	moving_to_b_top(b, distance_to_bottom, distance_to_top);
 }
 
 /*Bringing the desired element in stack_a on top
@@ -119,5 +117,5 @@ void	rotating_a(t_list **a, t_list *target_spot)
 	total = ft_lstsize(*a);
 	distance_to_bottom = total - (index_of_node + 1);
 	distance_to_top = index_of_node;
-	moving_to_a_top(a, target_spot, distance_to_bottom, distance_to_top);
+	moving_to_a_top(a, distance_to_bottom, distance_to_top);
 }

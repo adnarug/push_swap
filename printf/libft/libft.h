@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:01:49 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/13 16:53:42 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 14:52:23 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ typedef struct s_list
 }	t_list;
 int				ft_tolower(int c);
 int				ft_toupper(int c);
-char			*ft_strnstr(const char *haystack, const char *needle, size_t len);
+char			*ft_strnstr(const char *haystack, const char *needle, \
+							size_t len);
 int				ft_strncmp(const char *str1, const char *str2, size_t n);
 int				ft_strlen(const char *c);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);

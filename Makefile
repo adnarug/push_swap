@@ -6,7 +6,7 @@
 #    By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 15:33:32 by pguranda          #+#    #+#              #
-#    Updated: 2022/08/14 18:38:09 by pguranda         ###   ########.fr        #
+#    Updated: 2022/08/15 12:20:50 by pguranda         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,18 +23,21 @@ SRC_DIR	=	srcs/
 DEF_COLOR = \033[0;80m
 GREEN = \033[0;92m
 
-SRC_FILES	=	lst_utils\
-				instructions\
-				presorting\
-				presorting_utils\
-				stats\
-				score\
-				move_process\
-				input_parsing\
+SRC_FILES	=	instructions/instructions_a\
+				instructions/instructions_b\
+				instructions/instructions_utils\
+				sorting/presorting\
+				sorting/presorting_utils\
+				sorting/sorting\
+				stack_ops/duplicate_lst\
+				stack_ops/move_process\
+				stack_ops/rotating_stacks\
 				checks\
-				sorting\
-				duplicate_lst\
-				main
+				input_parsing\
+				lst_utils\
+				main\
+				score\
+				stats
 				
 SRC		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ		=	$(addprefix	$(OBJ_DIR), $(addsuffix .o, $(SRC_FILES))) 
@@ -53,6 +56,10 @@ $(NAME)	:	$(OBJ)
 
 $(OBJF):
 		@mkdir -p $(OBJ_DIR)
+		@mkdir -p $(OBJ_DIR)/instructions/
+		@mkdir -p $(OBJ_DIR)/sorting/
+		@mkdir -p $(OBJ_DIR)/stack_ops/
+
 
 $(OBJ_DIR)%.o	:	$(SRC_DIR)%.c | $(OBJF)
 #		@echo "Compiling: $< ..."

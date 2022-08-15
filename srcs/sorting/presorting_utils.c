@@ -6,11 +6,11 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:08:29 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 18:42:08 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 12:21:27 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 /*Swapping two nodes in the same list*/
 t_list	*lst_swap(t_list **first, t_list **second)

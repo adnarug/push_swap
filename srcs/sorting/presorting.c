@@ -6,11 +6,11 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 16:15:18 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 19:41:20 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 12:24:27 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 /*Check if the sorting is done i.e. no grater to the left and 
 smaller to the right of pivot*/
@@ -29,7 +29,7 @@ static int	end_sorting(t_list **left_scan, t_list **right_scan, t_list **pivot)
 
 /*Checking for greater to the left of pivot and
 smaller to the right of pivot, if found swapping, shifting the pivot*/
-static t_list	*quicksort(t_list **a, t_list *presorted_a, t_list *pivot)
+static t_list	*quicksort(t_list *presorted_a, t_list *pivot)
 {
 	t_list	*presorted_header;
 	t_list	*left_scan_result;
@@ -64,9 +64,9 @@ t_list	*sorting(t_list **a)
 
 	presorted = ft_lst_duplicate(a);
 	midpoint = search_midpoint(&presorted);
-	presorted = quicksort(a, presorted, midpoint);
+	presorted = quicksort(presorted, midpoint);
 	min = search_min(&presorted);
-	final_sorted = quicksort(&presorted, presorted, min);
+	final_sorted = quicksort(presorted, min);
 	return (final_sorted);
 }
 

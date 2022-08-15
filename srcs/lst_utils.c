@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:12:37 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 19:43:43 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 13:34:58 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,25 @@ void	ft_lst_free(t_list *lst)
 	pointer = NULL;
 }
 
-// void	ft_print_lst_a(t_list *a)
-// {
-// 	printf("A: \n");
-// 	while (a != NULL)
-// 	{
-// 		printf(" %-5d   [i: %d, position:%d]\n", a->content, a->index, a->position);
-// 		a = a->next;
-// 	}
-// }
+void	ft_print_lst_a(t_list *a)
+{
+	printf("A: \n");
+	while (a != NULL)
+	{
+		printf(" %-5d   [i: %d, position:%d]\n", a->content, a->index, a->position);
+		a = a->next;
+	}
+}
 
-// void	ft_print_lst_b(t_list *b)
-// {
-// 	printf("B: \n");
-// 	while (b != NULL)
-// 	{
-// 		printf(" %-5d   [i: %d, position:%d, total_score:%d]\n", b->content,  b->index, b->position, b->score);
-// 		b = b->next;
-// 	}
-// }
+void	ft_print_lst_b(t_list *b)
+{
+	printf("B: \n");
+	while (b != NULL)
+	{
+		printf(" %-5d   [i: %d, position:%d, total_score:%d]\n", b->content,  b->index, b->position, b->score);
+		b = b->next;
+	}
+}
 
 /*Returning the node with a given position (i.e. its place in sorted stack)*/
 t_list	*search_by_postion(t_list *stack, int position)
