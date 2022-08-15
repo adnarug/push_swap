@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 17:30:21 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/15 15:37:32 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 16:28:18 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	**typeof_input(char **new_argv, int *argc, int *i)
 static int	check_limits_repeats(int **arrayfor_check, char *s, int *counter)
 {
 	long int	number;
-	
+
 	number = ft_atoi(s);
 	check_limits(number);
 	if (arrayfor_check != NULL)
@@ -113,5 +113,4 @@ void	error_message(int error)
 	}
 	if (error == 0)
 		exit (0);
-
 }

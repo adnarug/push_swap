@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 13:56:18 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/14 20:12:09 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 16:26:39 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ void	check_repeats(int *arrayfor_check, int number, int counter)
 
 void	checkis_digit(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (ft_isdigit(s[i]) == 0 && s[i] != '+' && s[i] != '-')// Check if there is a non-digit
+		if (ft_isdigit(s[i]) == 0 && s[i] != '+' && s[i] != '-')
 		{
 			write (2, "Error\n", 6);
 			exit(1);
@@ -91,7 +91,7 @@ void	checkis_digit(char *s)
 
 void	check_limits(long int number)
 {
-	if(number > MAX_INT || number < MIN_INT)
+	if (number > MAX_INT || number < MIN_INT)
 	{
 		write(2, "Error\n", 6);
 		exit (0);

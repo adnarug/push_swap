@@ -6,19 +6,19 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 14:59:58 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/15 15:01:08 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 16:30:31 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-#include "../printf/ft_printf.h"
-#define MAX_INT 2147483647
-#define MIN_INT -2147483648
+# include "../printf/ft_printf.h"
+# define MAX_INT 2147483647
+# define MIN_INT -2147483648
 
 //Input parsing - 3 statics
-t_list		*input_parsing(char **argv, int *argc);
-void		error_message(int error);
+t_list	*input_parsing(char **argv, int *argc);
+void	error_message(int error);
 //checks - 0 statics
 int		check_raw_sorted(t_list **a);
 int		check_for_sorted(t_list **a);
@@ -27,12 +27,11 @@ void	checkis_digit(char *s);
 void	check_limits(long int number);
 //Duplicate_lst - 1 statics
 t_list	*ft_lst_duplicate(t_list **a);
-//Lst_uitls - 0 sattics TODO:Delete print from lst utils
+//Lst_uitls - 0 sattics
 void	ft_lst_free(t_list *lst);
 t_list	*search_by_postion(t_list *stack, int position);
 void	move_to_b(t_list **a, t_list **b);
 void	give_index(t_list **stack);
-// void	ft_print_lst_a(t_list *a);
 //Presorting - 2 statics
 void	final_sort(t_list **a);
 t_list	*sorting(t_list **a);

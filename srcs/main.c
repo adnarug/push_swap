@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:53:14 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/15 15:56:52 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 16:36:05 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Approach: 1. Leave min, max, med in stack_a, sort it.
 		  3. Move from stack_a to stack_b always in the right place
 Nuance:During presorting I give the correct position to each element, after that
 		working with the position rather than the indeces.
-		Separate algo for stacks of 3 and stacks of 5.*/
+		Separate algo for stacks of 3 and stacks of 5.TODO:take out the prints*/
 int	main(int argc, char **argv)
 {
 	t_list	*a;
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	a = input_parsing(argv, &argc);
 	presorting_check(&a);
 	presorting(&a);
-	check_for_sorted(&a);//check for raw sorted also
+	check_for_sorted(&a);
 	// ft_print_lst_a(a);
 	stacks_sorting(&a, &b);
 	// ft_print_lst_a(a);
@@ -40,6 +40,6 @@ int	main(int argc, char **argv)
 	a = NULL;
 	ft_lst_free(b);
 	b = NULL;
-	// system("leaks push_swap");
+	system("leaks push_swap");
 	return (0);
 }
