@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 20:07:53 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/15 12:21:18 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 15:02:40 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_list	*reassign_back_node(t_list **list)
 	head = last;
 	return (head);
 }
+
 /*ss not used*/
 void	ss(t_list *a, t_list *b)
 {

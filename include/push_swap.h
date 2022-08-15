@@ -1,14 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/15 14:59:58 by pguranda          #+#    #+#             */
+/*   Updated: 2022/08/15 15:01:08 by pguranda         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdio.h>
 #include "../printf/ft_printf.h"
 #define MAX_INT 2147483647
 #define MIN_INT -2147483648
 
-//Push_Swap
 //Input parsing - 3 statics
 t_list		*input_parsing(char **argv, int *argc);
 void		error_message(int error);
@@ -70,8 +77,6 @@ void	presorting(t_list **a);
 void	presorting_check(t_list **a);
 void	scoring(t_list **a, t_list **b);
 t_list	*target_spot_in_a(t_list **a, t_list *node);
-// t_list	*target_spot_in_a_for_5(t_list **a, t_list *node);
-// t_list	*target_spot_in_a(t_list **a, t_list *node);
 //Stats
 t_list	*search_min(t_list **a);
 t_list	*search_max(t_list **a);

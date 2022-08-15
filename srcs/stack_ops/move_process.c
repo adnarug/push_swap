@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 15:49:27 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/15 12:21:55 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 15:02:21 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,8 @@ void	move_process(t_list **a, t_list **b)
 
 	to_move = search_cheapest_move(b);
 	target_spot = target_spot_in_a(a, to_move);
-	// printf ("\n\nElement to be moved: %d, ras: %d rras:%d SCORE: %d \n", to_move->content, to_move->score_ra, to_move->score_rra, to_move->score);
-	// printf ("Target spot: %d, ras: %d rras:%d \n", target_spot->content, target_spot->score_ra, target_spot->score_rra);
-	// printf ("Score for the element: %d\n\n", to_move->score);
 	finding_rrs(to_move, target_spot);
 	executing_rrs(a, b, to_move);
-	// printf("BEFORE MOVE \n NODE  : %d position: %d score: %d \n TARGET: %d position: %d\n\n",to_move->content, to_move->position, to_move->total_score, target_spot->content, target_spot->position);	
-	// ft_print_lst_b(b);
 	rotating_b(b, to_move);
 	rotating_a(a, target_spot);
 	pa(a, b);
@@ -92,16 +87,16 @@ int	distance_to_move(t_list **stack, t_list *node)
 	int		index_of_node;
 	int		total;
 	t_list	*temp;
-	
+
 	temp = *stack;
 	index_of_node = node->index;
 	total = ft_lstlast(*stack)->index + 1;
 	distance_to_bottom = total - (index_of_node + 1);
 	distance_to_top = index_of_node;
 	node->score_ra = distance_to_top;
-	node->score_rra = distance_to_bottom + 1;//to move to the top of the stack + pb
-	if(distance_to_bottom < distance_to_top)
-		return(distance_to_bottom + 1);//to move to the top of the stack
+	node->score_rra = distance_to_bottom + 1;
+	if (distance_to_bottom < distance_to_top)
+		return (distance_to_bottom + 1);
 	else
-		return(distance_to_top);
+		return (distance_to_top);
 }

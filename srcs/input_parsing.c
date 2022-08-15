@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 17:30:21 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/15 13:32:17 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 15:37:32 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,15 @@ static char	**typeof_input(char **new_argv, int *argc, int *i)
 }
 
 /*Checking if int is more than MAX or MIN or repeated*/
-static void	check_limits_repeats(int **arrayfor_check, long int number, int *counter)
+static int	check_limits_repeats(int **arrayfor_check, char *s, int *counter)
 {
+	long int	number;
+	
+	number = ft_atoi(s);
 	check_limits(number);
-	if(arrayfor_check != NULL)
-		check_repeats(*arrayfor_check, number, *counter);
+	if (arrayfor_check != NULL)
+		check_repeats(*arrayfor_check, (int)number, *counter);
+	return (number);
 }
 
 /*Converting the final argv into a linked list*/
@@ -57,19 +61,18 @@ static void	argv_to_list(char **argv, int argc, t_list *a, int start)
 	int				*arrayfor_check;
 
 	number = 0;
-	counter = 0; // will it work?
+	counter = 1;
 	first = a;
 	arrayfor_check = malloc((argc) * sizeof(int));
 	if (arrayfor_check == NULL)
 		return ;
 	arrayfor_check[0] = first->content;
-	while (start < argc) //will it work?
+	while (start < argc)
 	{
 		if (argv[start] == NULL)
 			error_message(1);
 		checkis_digit(argv[start]);
-		number = ft_atoi(argv[start]);
-		check_limits_repeats(&arrayfor_check, number, &counter);
+		number = check_limits_repeats(&arrayfor_check, argv[start], &counter);
 		first = ft_lstadd_back(&first, ft_lstnew(number));
 		arrayfor_check[counter] = number;
 		start++;
@@ -91,8 +94,7 @@ t_list	*input_parsing(char **argv, int *argc)
 	if ((argv[1] == NULL || *argv[1] == '\0') && *argc == 2)
 		error_message(0);
 	argv = typeof_input(argv, argc, &i);
-	number = ft_atoi(argv[i]);
-	check_limits_repeats(NULL, number, 0);
+	number = check_limits_repeats(NULL, argv[i], 0);
 	stack_a = ft_lstnew(number);
 	if (i == 0)
 		*argc = *argc - 1;

@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 13:52:34 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/15 14:50:44 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/15 16:23:38 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,20 @@ static int	ft_isnum(char c)
 	return (0);
 }
 
-static int	get_num(char *s)
+static long int	get_num(const char *str, int *i)
 {
-	int	i;
+	long int	result_integer;
 
-	i = 0;
-	if (s == NULL)
-		return (0);
-	while (ft_isnum(str[i]) == 1)
+	result_integer = 0;
+	while (ft_isnum(str[*i]) == 1)
 	{
-		result_integer = result_integer * 10 + str[i] - '0';
-		i++;
+		result_integer = result_integer * 10 + str[*i] - '0';
+		*i = *i + 1;
 	}
 	return (result_integer);
 }
 
-void	error_message(int error)
+static void	error_message(int error)
 {
 	if (error == 1)
 	{
@@ -73,7 +71,7 @@ long int	ft_atoi(const char *str)
 	}
 	if (ft_isnum(str[i]) == 0)
 		error_message(1);
-	result_integer = get_num(&str[i]);
+	result_integer = get_num(str, &i);
 	if (ft_isnum(str[i]) == 0 && str[i] != '\0' \
 		&& str[i] != '\t' && str[i] != ' ')
 		error_message(1);
