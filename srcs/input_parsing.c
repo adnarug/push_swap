@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 17:30:21 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/15 16:28:18 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/16 17:55:31 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static char	**typeof_input(char **new_argv, int *argc, int *i)
 		if (*argc != 2)
 			error_message(1);
 		new_argv = ft_split(new_argv[1], ' ', &counter);
+		if (new_argv == NULL)
+			error_message(1);
 		*argc = counter;
 		*i = 0;
 	}

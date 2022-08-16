@@ -6,7 +6,7 @@
 /*   By: pguranda <pguranda@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 10:04:33 by pguranda          #+#    #+#             */
-/*   Updated: 2022/08/15 14:51:14 by pguranda         ###   ########.fr       */
+/*   Updated: 2022/08/16 17:54:19 by pguranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	**ft_split(char const *s, char c, int *counter)
 	*counter = 0;
 	i = 0;
 	arr_len = ft_count_strings(s, c);
+	if (arr_len == 0)
+		return (NULL);
 	arr_str = (char **)malloc(arr_len * sizeof(char *) + sizeof(void *));
 	if (arr_str == NULL)
 		return (NULL);
